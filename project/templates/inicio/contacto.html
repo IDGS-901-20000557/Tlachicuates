@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <title>Tlachicuates - Contacto</title>
+  <meta name="viewport"
+    content="width=divece-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1">
+  <link rel="stylesheet" href="../../static/css/estilos-contacto.css">
+  <link rel="stylesheet" href="../../static/css/animate.css">
+  <link rel="icon" href="../../static/img/isotipo.png">
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="../../static/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../static/bootstrap/css/bootstrap-responsive.css">
+
+  <link rel="stylesheet" type="text/css" href="../../static/fonts/fontello.css">
+  <link rel="stylesheet" href="../../static/css/nivo-slider.css">
+  <link rel="stylesheet" href="../../static/css/mi-slider.css">
+  <link href="https://fonts.googleapis.com/css?family=Lora&display=swap" rel="stylesheet">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript"></script>
+  <script src="../../static/js/jquery/jquery.nivo.slider.js"></script>
+  <script type="text/javascript">
+    $(window).on('load', function () {
+      $('#slider').nivoSlider();
+    }); 
+  </script>
+  <script src="../../static/js/wow.min.js" type="text/javascript"></script>
+  <script>
+    new WOW().init();
+  </script>
+</head>
+
+<body>
+  <!-- Menu -->
+  <nav class="navbar navbar-expand-lg navbar-dark"
+    style="background-color: #cda572; padding: 0 !important; margin: 0 !important; z-index: 10000;">
+    <div class="container-fluid">
+      <img src="../../static/img/logoCircular.png" class=""
+        style="width: 100px; height: 100px;   display: block;margin-left: auto; margin-right: auto;">
+    </div>
+  </nav>
+
+  <nav class="navbar navbar-expand-lg navbar-dark d-flex justify-content-center sticky-top"
+    style="background-color: #55a277; padding: 0 !important; margin: 0 !important; z-index: 2000;">
+    <div class=" d-flex justify-content-center">
+      <div class="navbar-collapse">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item" id="liAyuda">
+            <a class="nav-link active menuLetra text-center" href="/">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active menuLetra text-center" href="/nosotros">Nosotros</a>
+          </li>
+        </ul>
+      </div>
+      <img src="../../static/img/iconos_titulo.png" class="align-middle my-auto" style="width: 60px; height: 12px; top: 50%;">
+      <div class="navbar-collapse">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item" id="liRegisUser">
+            <a class="nav-link active menuLetra text-center" href="/productos">Productos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active menuLetra text-center" style="background: rgba(0, 0, 0, .05); text-decoration: underline #ECEFD1;" href="#">Contacto</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Fin Menu -->
+
+  <section class="banner">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3721.8026808804975!2d-101.68133388603222!3d21.120431490020575!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842bbf0bce3df723%3A0xbc7ba7ca6ff3cbe9!2sC.%20Motolinia%20122%2C%20Centro%2C%2037000%20Le%C3%B3n%2C%20Gto.!5e0!3m2!1ses-419!2smx!4v1680674645653!5m2!1ses-419!2smx"
+      width="100%" height="650" frameborder="0" style="border:0" allowfullscreen></iframe>
+  </section>
+
+
+  <section class="group main__about__description fondo4">
+    <div class="containerso containerso--flex">
+      <div class="column column--50">
+        <div class="slider-wrapper theme-mi-slider">
+          <div id="slider" class="nivoSlider">
+            <img src="../../static/img/1.jpg" alt="" title="#htmlcaption1" />
+            <img src="../../static/img/2.jpg" alt="" title="#htmlcaption2" />
+            <img src="../../static/img/3.jpg" alt="" title="#htmlcaption3" />
+          </div>
+          <div id="htmlcaption1" class="nivo-html-caption">
+            <h1 style="font-family: blackrocky;">Sean bienvenidos</h1>
+          </div>
+          <div id="htmlcaption2" class="nivo-html-caption">
+            <h1 style="font-family: blackrocky;">Acerca de nosotros</h1>
+          </div>
+          <div id="htmlcaption3" class="nivo-html-caption">
+            <h1 style="font-family: blackrocky;">Gracias por visitar</h1>
+          </div>
+        </div>
+      </div>
+      <div class="column column--50  wow fadeInRight" data-wow-delay="0.1s">
+        <form action="enviar.php" method="post">
+          <p class="estilos">¿DESEAS MAYOR INFORMACIÓN?</p>
+          <p class="estilos2">Será un gusto para nosotros atenderte.</p>
+          <input type="text" name="nombre" placeholder="Nombre" required style="margin: 10px;">
+          <input type="text" name="correo" placeholder="Correo" required style="margin: 10px;">
+          <input type="text" name="telefono" placeholder="Telefono" required style="margin: 10px;">
+          <textarea name="mensaje" placeholder="Escriba aqui su mensaje" required style="margin: 10px;"></textarea>
+          <input type="submit" value="Enviar" id="boton" class="boton contenedorboton">
+        </form>
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+
+  <section class="group main__about__description fondo">
+    <div class=" wow bounceInUp" data-wow-delay="0.1s">
+      <p class="holaletra">UBICACIÓN</p>
+      <p class="holatxt">C. Motolinía 122, Centro, 37000 León, Gto. 
+        Guanajuato.<br> <br><span class="icon-whatsapp"></span> Tel: 477-554-72-62 <br>Email: soporte-tlachicuates@hotmail.com </p>
+      <p class="espacio">Email: contacto-tlachicuates@hotmail.com</span></p>
+    </div>
+    </div>
+  </section>
+
+
+  <footer class="main-footer">
+		<div class="containerso containerso--flex">
+			<div class="column column--33" style="margin-top: 18px;">
+				<h2 class="column__title">Colaboradores</h2>
+				<p class="column__txt">-Claudio Tamayo.<br>-Herick Navarro.<br>-Noe Guevara.<br>-Roberto Rodríguez.</p>
+			</div>
+			<div class="column column--33">
+				<h2 class="column__title">Contáctanos</h2>
+				<p class="column__txt">
+					Tlachicuates®<br>soporte-tlachicuates@hotmail.com<br>contacto-tlachicuates@hotmail.com
+				</p>
+			</div>
+			<div class="column column--33" style="margin-bottom: 23px;">
+				<h2 class="column__title">Redes sociales</h2>
+				<p class="column__txt">
+					<a href="#"
+						class="social-icon__link sinc"><span class="icon-facebook">Facebook</span> <br></a>
+					<a class="social-icon__link sinc"><span class="icon-whatsapp">477-554-72-62</span></a>
+				</p>
+			</div>
+
+			<p class="copy"> 2023 TLACHICUATES ® | tlachicuates@hotmail.com | Todos los derechos reservados. | <a
+					href="/loginTlachicuates" class="claudio">Iniciar sesión</a></p>
+
+		</div>
+	</footer>
+</body>
+
+</html>

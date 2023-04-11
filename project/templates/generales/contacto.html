@@ -1,0 +1,39 @@
+{% extends "inicio/layout.html" %}
+{% block content%}
+<div class="container">
+    <!-- Navigation titulo.html-->
+    <p class="titulo wow pulse infinite slow 5s">No critiques</p>
+    <p class="titulo wow pulse infinite slow 5s">Lo que no puedes entender</p>
+    <hr>
+
+    <!-- Form -->
+    <form class="formContacto">
+		<h2>CONTACTO</h2>
+		<input type="text" name="Nombre" placeholder="Nombre">
+		<input type="text" name="Correo" placeholder="Correo">
+		<input type="text" name="Telefono" placeholder="Teléfono">
+		<textarea name="mensaje" placeholder="Escriba aqui su mensaje"></textarea>
+		<input type="button" value="Enviar" id="boton">
+	</form>
+
+    <!-- Footer -->
+
+    <section class="social">
+        <p>Follow me</p>
+        <div class="links">
+            <a href="https://facebook.com">
+                <i class="fab fa-facebook-f iconos"></i>
+            </a>
+            <a href="https://twitter.com/Ramick616?s=09">
+                <i class="fab fa-twitter iconos"></i>
+            </a>
+            <a href="https://linkdin.com">
+                <i class="fab fa-linkedin iconos"></i>
+            </a>
+        </div>
+    </section>
+
+</div>
+
+
+{% endblock %}

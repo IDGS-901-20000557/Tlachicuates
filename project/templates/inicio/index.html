@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<link rel="icon" href="../../static/img/isotipo.png">
+	<meta charset="utf-8">
+	<title>Tlachicuates</title>
+	<meta name="viewport" content="width=divece-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1">
+	<link rel="stylesheet" href="../../static/css/estilos.css">
+	<link rel="stylesheet" href="../../static/css/animate.css">
+
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="../../static/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../static/bootstrap/css/bootstrap-responsive.css">
+
+	<link rel="stylesheet" type="text/css" href="../../static/fonts/fontello.css">
+	<script src="../../static/js/wow.min.js" type="text/javascript"></script>
+	<script>
+		new WOW().init();
+	</script>
+	<script type="text/javascript">
+		function showContent() {
+
+			element = document.getElementById("content");
+			element2 = document.getElementById("content2");
+			element4 = document.getElementById("content4");
+			element5 = document.getElementById("content5");
+			check = document.getElementById("check");
+			check2 = document.getElementById("check2");
+			check3 = document.getElementById("check3");
+
+			if (check.checked) {
+				element.style.display = 'block';
+				element2.style.display = 'none';
+				element4.style.display = 'none';
+				element5.style.display = 'none';
+			} else {
+				element.style.display = 'none';
+				if (check2.checked) {
+					element.style.display = 'none';
+					element2.style.display = 'block';
+					element4.style.display = 'none';
+					element5.style.display = 'none';
+				} else {
+					element2.style.display = 'none';
+					if (check3.checked) {
+						element.style.display = 'none';
+						element2.style.display = 'none';
+						element4.style.display = 'block';
+						element5.style.display = 'block';
+					} else {
+						element4.style.display = 'none';
+						element5.style.display = 'none';
+					}
+				}
+			}
+		}
+	</script>
+
+</head>
+
+<body>
+
+	<!-- Menu -->
+	<nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #cda572; padding: 0 !important; margin: 0 !important;">
+		<div class="container-fluid">
+			<img src="../../static/img/logoCircular.png" class="" style="width: 100px; height: 100px;   display: block;margin-left: auto; margin-right: auto;">
+		</div>
+	</nav>
+
+
+	<nav class="navbar navbar-expand-lg navbar-dark d-flex justify-content-center sticky-top"
+		style="background-color: #55a277; padding: 0 !important; margin: 0 !important; z-index: 2000;">
+		<div class=" d-flex justify-content-center">
+			<div class="navbar-collapse">
+				<ul class="navbar-nav me-auto">
+					<li class="nav-item" id="liAyuda">
+						<a class="nav-link active menuLetra text-center" style="background: rgba(0, 0, 0, .05); text-decoration: underline #ECEFD1;" href="#">Inicio</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active menuLetra text-center" href="/nosotros">Nosotros</a>
+					</li>
+				</ul>
+			</div>
+			<img src="../../static/img/iconos_titulo.png" class="align-middle my-auto" style="width: 60px; height: 12px; top: 50%;">
+			<div class="navbar-collapse">
+				<ul class="navbar-nav me-auto">
+					<li class="nav-item" id="liRegisUser">
+						<a class="nav-link active menuLetra text-center" href="/productos">Productos</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active menuLetra text-center" href="/contacto">Contacto</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!-- Fin Menu -->
+
+	<!-- Banner -->
+	<div id="slider" class="banner">
+		<figure>
+			<img src="../../static/img/bannerInndexImage1.jpg">
+			<img src="../../static/img/bannerInndexImage2.jpg">
+			<img src="../../static/img/bannerInndexImage3.jpg">
+			<img src="../../static/img/bannerInndexImage4.jpg">
+			<img src="../../static/img/bannerInndexImage1.jpg">
+		</figure>
+		<div class="banner__content">
+			<h1>TLACHICUATES</h1>
+		</div>
+	</div>
+	<!-- Fin Banner -->
+
+
+	<section class="group main__about__description segunda">
+		<img src="../../static/img/segundaInndex.jpg" class="seg__img">
+
+		<div class="containerso containerso--flex">
+			<div class="column column--50 ">
+				<p class="letra">Experiencia y cualidades</p>
+			</div>
+			<div class="column column--50 ejemplo wow fadeInRight" data-wow-delay="0.3s">
+				<h3 class="column__title PATATA">SOMOS EXPERTOS</h3>
+				<p class="column__txt PATATA2">Somos una empresa que se preocupa por nuestros clientes. no a todos les gusta el pulque natural, por ello nos hemos dado a la tarea de hacer pulques curados.</p>
+				<h3 class="column__title1">SERVICIOS QUE OFRECEMOS:</h3>
+				<ul>
+					<li class="column__txt1"><span class="lolo"><b>Presentación:</b></span> Hemos empezado a experimentar con nuevas formas de producción y presentación del pulque para atraer a nuevos consumidores y revitalizar su popularidad.</li>
+					<li class="column__txt1"><span class="lolo"><b>Sistemas Informaticos:</b></span> Se ha implementado un sistema de compras en línea, para que no tengas que hacer colas innecesarias y además de que puedas apartar tu mesa en nuestro local.</li>
+					<li class="column__txt1"><span class="lolo"><b>Variedad:</b></span> Tlachicuates se encargará de traer a tus manos el sabor original del pulque como lo hacían y bebían nuestros ancestros, además de traer más variedad de sabores como guayaba, fresa, mazapán, frutos rojos entre otros más.</li>
+					<li class="column__txt1"><span class="lolo"><b>Tecnología:</b></span> En nuestra sucursal, se podrá seleccionar el pulque a su gusto mediante un menú digital que se encontrara en una pantalla dentro de la sucursal, donde podrán personalizar su sabor y verán el proceso de preparación que tiene su rico y delicioso pulque.</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+
+	<section class="tercera group" style="margin: 0;">
+		<div class="primero wow  jackInTheBox" data-wow-delay="0.2s">
+			<div class="containerso containerso--flex">
+				<div class="column column--33 d-flex justify-content-center">
+					<label>
+						<input checked type="radio" class="patata1" name="check" id="check" value="1"
+							onchange="javascript:showContent()">
+						<img src="../../static/img/mision.png" class="img3 lola">
+						<p class="parrafo lolah">Misión</p>
+					</label>
+				</div>
+				<div class="column column--33 mayor d-flex justify-content-center">
+					<label>
+						<input type="radio" class="patata2" name="check" id="check2" value="1"
+							onchange="javascript:showContent()">
+						<img class="img5 lola2" src="../../static/img/vision.png" style="margin-bottom: 30px;">
+						<p class="parrafo lolah2">Visión</p>
+					</label>
+				</div>
+				<div class="column column--33 mayor d-flex justify-content-center">
+					<label>
+						<input type="radio" class="patata3" name="check" id="check3" value="1"
+							onchange="javascript:showContent()">
+						<img src="../../static/img/valores.png" class="img11 lola3" style="margin-bottom: 30px;">
+						<p class="parrafo lolah3">Valores</p>
+					</label>
+				</div>
+			</div>
+			<div class="containerso containerso--flex">
+				<div class="column" id="content">
+					<h3 class="titulov color">Misión</h3>
+					<p class="txtv color">Nuestra misión es promover y difundir la cultura y tradición mexicana a través de nuestro pulque auténtico, 
+						ofreciendo un producto de alta calidad a nuestros clientes y contribuyendo a la preservación de esta bebida milenaria.
+					</p>
+				</div>
+			</div>
+			<div class="containerso containerso--flex">
+				<div class="colum" id="content2" style="display: none;">
+					<h3 class="titulov color">Vision</h3>
+					<p class="txtv color">Nuestra visión es ser reconocidos como líderes en la producción y venta de pulque curado de alta calidad, brindando una experiencia única y auténtica a nuestros clientes y contribuyendo al desarrollo económico de las comunidades productoras.
+					</p>
+				</div>
+			</div>
+			<div class="containerso containerso--flex">
+				<div class="column column--50" id="content4" style="display: none;">
+
+					<h3 class="titulov color">Valores</h3>
+					<ul>
+					<li class="txtv color column__txt1"><span class="lolo"><b>Respeto por las tradiciones y la cultura del pulque:</b></span> Este valor refleja el compromiso de la empresa con la preservación y difusión de la cultura y las tradiciones relacionadas con el pulque, y su importancia para la identidad cultural de la comunidad.</li>
+					<li class="txtv color column__txt1"><span class="lolo"><b>Compromiso con la sostenibilidad y el cuidado del medio ambiente:</b></span> Este valor demuestra la responsabilidad social y ambiental de la empresa, y su compromiso con la protección y conservación del medio ambiente para las generaciones futuras.</li>
+					<li class="txtv color column__txt1"><span class="lolo"><b>Excelencia en la producción y la calidad del pulque curado:</b></span> Este valor se enfoca en ofrecer un producto de alta calidad y sabor único, para brindar una experiencia satisfactoria a los clientes y diferenciarse de la competencia.</li>
+					</ul>
+				</div>
+				<div class="column column--50" id="content5" style="display: none;">
+					<ul>
+						<li class="txtv color column__txt1"><span class="lolo"><b>Honestidad y transparencia en todas las transacciones comerciales:</b></span> La honestidad y transparencia son valores clave en cualquier empresa, ya que ayudan a garantizar la confianza y lealtad de los clientes y a mejorar la reputación y credibilidad de la empresa.</li>
+						<li class="txtv color column__txt1"><span class="lolo"><b>Atención al cliente y satisfacción garantizada: </b></span> Este valor se enfoca en brindar un servicio excepcional y garantizar la satisfacción de los clientes, lo que puede ayudar a fomentar la fidelidad y lealtad de los clientes y a aumentar las oportunidades de negocios a largo plazo.</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		</label>
+		</div>
+
+		<div class="acordeon">
+			<div class="acordeon_item">
+				<input type="radio" name="acordeon" id="item1">
+				<label for="item1" class="acordeon__titulo wow  bounceInLeft" data-wow-delay="0.1s">Misión</label>
+				<p class="acordeon__contenido">
+					<br>Nuestra misión es promover y difundir la cultura y tradición mexicana a través de nuestro pulque auténtico, ofreciendo un producto de alta calidad a nuestros clientes y contribuyendo a la preservación de esta bebida milenaria. <br> <br>
+				</p>
+			</div>
+			<div class="acordeon_item">
+				<input type="radio" name="acordeon" id="item2">
+				<label for="item2" class="acordeon__titulo wow  bounceInRight" data-wow-delay="0.1s">Visión</label>
+				<p class="acordeon__contenido">
+					<br> Nuestra visión es ser reconocidos como líderes en la producción y venta de pulque curado de alta calidad, brindando una experiencia única y auténtica a nuestros clientes y contribuyendo al desarrollo económico de las comunidades productoras.<br> <br>
+				</p>
+			</div>
+			<div class="acordeon_item">
+				<input type="radio" name="acordeon" id="item3">
+				<label for="item3" class="acordeon__titulo wow  bounceInLeft" data-wow-delay="0.1s">Valores</label>
+				<p class="acordeon__contenido"><br><span class="lolo"><b>• Respeto por las tradiciones y la cultura del pulque:</b></span> Este valor refleja el compromiso de la empresa con la preservación y difusión de la cultura y las tradiciones relacionadas con el pulque, y su importancia para la identidad cultural de la comunidad. <br> <br>
+												   <span class="lolo"><b>• Compromiso con la sostenibilidad y el cuidado del medio ambiente:</b></span> Este valor demuestra la responsabilidad social y ambiental de la empresa, y su compromiso con la protección y conservación del medio ambiente para las generaciones futuras.</li><br> <br>
+												   <span class="lolo"><b>• Excelencia en la producción y la calidad del pulque curado:</b></span> Este valor se enfoca en ofrecer un producto de alta calidad y sabor único, para brindar una experiencia satisfactoria a los clientes y diferenciarse de la competencia.<br> <br>
+												   <span class="lolo"><b>• Honestidad y transparencia en todas las transacciones comerciales:</b></span> La honestidad y transparencia son valores clave en cualquier empresa, ya que ayudan a garantizar la confianza y lealtad de los clientes y a mejorar la reputación y credibilidad de la empresa. <br> <br>
+												   <span class="lolo"><b>• Atención al cliente y satisfacción garantizada: </b></span> Este valor se enfoca en brindar un servicio excepcional y garantizar la satisfacción de los clientes, lo que puede ayudar a fomentar la fidelidad y lealtad de los clientes y a aumentar las oportunidades de negocios a largo plazo. <br>
+					<br>
+				</p>
+			</div>
+		</div>
+	</section>
+
+
+	<main class="main" style="margin: 0;">
+
+		<section class="group today-special fondo">
+			<div class="containerso containerso--flex">
+				<div class="column column--33 wow bounceInLeft" data-wow-delay="0.5s">
+					<img src="../../static/img/inovacion.png" alt="" class="today-special__img">
+					<div class="today-special__title">Inovación</div>
+					<p class="today-special__price">Contamos con grandes avances tecnológicos, <br>
+						gracias a la ayuda de Iot, desarrollamos <br>
+						un sistema de preparación automática de pulque.<br>
+
+					</p>
+				</div>
+				<div class="column column--33 lol wow bounceInUp" data-wow-delay="0.5s">
+					<img src="../../static/img/experiencia.png" alt="" class="today-special__img">
+					<div class="today-special__title" >Experiencia</div>
+					<p class="today-special__price">El usuario tendra una experiencia distinta a<br>
+													cualquiera de las opciones del mercado,<br>
+													adaptándonos a los cambios del entorno<br>
+						
+
+					</p>
+
+				</div>
+				<div class="column column--33 wow bounceInRight" data-wow-delay="0.5s">
+					<img src="../../static/img/distribucion.png" alt="" class="today-special__img1">
+					<div class="today-special__title">Distribución </div>
+					<p class="today-special__price">Se distribuye y comercializa <br>
+						el pulque en cualquier tienda <br>
+						comercial de su preferencia.<br>
+
+					</p>
+
+				</div>
+			</div>
+		</section>
+
+			<section src="" class="group group--color section" style="height: 100% !important; padding: 0 !important; margin: 0 !important;">
+				<div class="containerso  wow flipInX row" data-wow-delay="0.2s"  style="padding: 0 0 30px 0 !important; margin: 0 !important;">
+					<div class="col-sm-12 col-md-5 col-lg-6" style="padding-bottom: 0; margin-bottom: 0;">
+					<p class="estilo2">¿DESEAS MAYOR INFORMACIÓN?</p>
+					<p class="estilo3 aparece">PODEMOS <span class="otroestilo">AYUDARTE</span> </p>
+					</div>
+					<div class="col-sm-12 col-md-3 col-lg-6">
+					<a href="/contacto" class="d-flex flex-row-reverse align-top  align-items-center botonA" style="
+												  
+												   margin-right: 150px;
+												   padding-top: 70px;
+												   text-decoration: none; 
+												   
+												   ">
+							<button class="contenedorboton2">CONTÁCTANOS</button>
+					</a>
+				</div>
+				</div>
+			</section>
+	
+
+		<section class="group main__about__description fondo4">
+			<div class="containerso containerso--flex">
+				<div class="column column--50 wow fadeInLeft">
+					<h3 class="tituloseccion4">¿QUIENES SOMOS?</h3>
+					<p class="textoseccion4">Nuestra compañía se llama Tlachicuates y somos una empresa entusiasta apasionado por la cultura del pulque. 
+					</p>
+					<a href="/nosotros">
+						<div align="right" class="contenedorboton">
+							<p class="boton">VER MÁS</p>
+						</div>
+					</a>
+				</div>
+				<div class="column column--50">
+					<img src="../../static/img/imgseccion4.jpg" alt=""class="img4  wow fadeInRight">
+				</div>
+			</div>
+		</section>
+
+	</main>
+
+
+
+
+
+	<footer class="main-footer">
+		<div class="containerso containerso--flex">
+			<div class="column column--33" style="margin-top: 18px;">
+				<h2 class="column__title">Colaboradores</h2>
+				<p class="column__txt">-Claudio Tamayo.<br>-Herick Navarro.<br>-Noe Guevara.<br>-Roberto Rodríguez.</p>
+			</div>
+			<div class="column column--33">
+				<h2 class="column__title">Contáctanos</h2>
+				<p class="column__txt">
+					Tlachicuates®<br>soporte-tlachicuates@hotmail.com<br>contacto-tlachicuates@hotmail.com
+				</p>
+			</div>
+			<div class="column column--33" style="margin-bottom: 23px;">
+				<h2 class="column__title">Redes sociales</h2>
+				<p class="column__txt">
+					<a href="#"
+						class="social-icon__link sinc"><span class="icon-facebook">Facebook</span> <br></a>
+					<a class="social-icon__link sinc"><span class="icon-whatsapp">477-554-72-62</span></a>
+				</p>
+			</div>
+
+			<p class="copy"> 2023 TLACHICUATES ® | tlachicuates@hotmail.com | Todos los derechos reservados. | <a
+					href="/loginTlachicuates" class="claudio">Iniciar sesión</a></p>
+
+		</div>
+	</footer>
+</body>
+
+</html>

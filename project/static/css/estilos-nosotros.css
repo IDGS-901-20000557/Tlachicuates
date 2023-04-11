@@ -1,0 +1,466 @@
+body{
+	margin: 0;
+	min-height: 100vh;
+	overflow-x:hidden;
+}
+/*--------------------------------------------------------------------MENU----------------------------------------------------------------*/
+header{
+position: fixed;
+width: 100%;
+background: rgba(194,234,244,.5);
+top: 0;
+z-index: 200000;
+}
+.sinc{   
+text-decoration: none;
+}
+#btn-menu{
+display: none;
+}
+header label{
+display: none;
+width: 20px;
+height: 20px;
+padding: 10px;
+}
+header label:hover{
+cursor: pointer;
+background: rgba(0,0,0,.3);
+}
+.papa{
+background: rgba(0,0,0,.3);
+}
+.menu ul{
+margin: 0;
+list-style: none;
+padding: 0;
+display: flex;
+justify-content: flex-start;
+}
+.menu li:hover{
+cursor: pointer;
+background: rgba(0,0,0,.3);
+}
+.menu li a{
+display: block;
+padding: 10px 20px;
+color:  black;
+text-decoration: none;
+}
+.menu a{
+	padding-top: 15px;
+	padding: 15px 10px 10px 30px;
+	display: block;
+	color: #fff;
+	text-decoration: none;
+}
+@media(max-width:719px){
+header label{
+display: block;
+border-right: 1px solid #000000;
+}
+.menu{
+position: fixed;
+background: rgba(0,0,0,.6);
+width: 50%;
+margin-left: -50%;
+transition: all 0.5s;
+height: 100%;
+background: rgba(194,234,244,.5);
+
+}
+.menu ul{
+flex-direction: column;
+
+}
+.menu li{
+border-top: 1px solid #000000;
+padding-top: 3px;
+}
+.logo3{
+	border-bottom: 1px solid #000000;
+}
+#btn-menu:checked ~ .menu{
+margin: 0;
+
+}
+}
+
+.social-icon {   
+display: flex;
+justify-content: space-between;
+}
+.social-icon [class*="icon-"] {   
+color: white;
+margin-left: 10px;
+display: flex;
+justify-content: right;
+align-items: right;
+font-size: 1.8em;
+width: 5px;
+height: 5px;
+background: white;
+border-radius: 50%;
+}
+.logo{   
+height: 60px;
+width: 150px;
+padding-top: 0;
+margin-top: 0;
+}
+.logo2{
+	padding-top: 10px;
+}
+.logo3{
+	padding-top: 10px;
+}
+.social-icon__link{
+left: 500px;
+top: 30px;
+}
+div a{
+	color: black;
+}
+/*----------------------------------------------------------Estilos del Banner------------------------------------------------------------*/
+.banner{   
+margin-top: -55px;
+position: relative;
+}
+
+.banner:before {   
+content: '';
+position: absolute;
+width: 100%;
+height: 100%;
+background: rgba(0,0,0,0.7);
+z-index: 1000;
+top: 0;
+}
+
+.banner__img{   
+width: 100%;
+height: 890px;
+object-fit: cover;
+
+}
+.seg__img{   
+width: 100%;
+height: 1500px;
+top: 0;
+z-index: -1000;
+position: fixed;
+object-fit: cover;
+}
+
+
+.segunda{   
+background: linear-gradient(180deg, rgba(205, 165, 114, .5), rgba(85, 162, 119, .5));
+}
+
+@font-face {
+	font-family: fuenteMaya;
+	src: url('../fonts/Mayan.ttf');
+}
+
+.banner__content{   
+	font-family: fuenteMaya;
+color: white;
+text-align: center;
+position: absolute;
+z-index: 1500; 
+top: 50%;
+left: 50%;
+transform: translateX(-50%) translateY(-50%);
+font-weight: bold;
+padding: 15px;
+border: 1.5px solid white;
+animation-name: title1;
+animation-duration: 4s;
+opacity: 0;
+animation-fill-mode: forwards;
+}
+@keyframes title1{
+    0%{
+    opacity: 0;
+    }
+    100%{
+opacity: 1;
+    }
+}
+/*----------------------------------------------------------Estilos del Footer------------------------------------------------------------*/
+.main-footer{   
+background: #222;
+color: white;
+padding: 10px;
+padding-top: 20px;
+padding-bottom: 20px;
+font-size: .8em;
+}
+.copy{   
+text-align: center;
+margin: auto;
+margin-top: 15px;
+}
+.main-footer p{
+	font-size: 1em;
+}
+.main-footer [class*="icon-"]{   
+color: white;
+text-decoration: none;
+}
+.main-footer [class*="icon-"]:before{   
+position: relative;
+top: 0;
+right: 5px;
+}
+.claudio{
+	color: white;
+font-family: 'Lora', serif;
+}
+.claudio:hover  {
+	color: #55a277 ;
+	
+}
+/*----------------------------------------------------------Estilos base-------------------------------------------------------------------*/
+img{   
+display: block;
+width: 100%;
+max-width: 100%;
+}
+
+h1, h2, h3, h4, h5, h6{   
+margin: 0;
+}
+.containerso{   
+width: 100%;
+margin: auto;
+}
+
+.containerso--flex{   
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
+align-items: center;
+}
+.column {   
+width: 100%;
+}
+.holaletra{   
+color: black;
+font-size: 25px;
+text-align: center;
+padding-top: 50px;
+margin: 0;
+font-family: 'Times New Roman', Times, serif;
+}
+.yeah{   
+color: grey;
+font-size: 20px;
+text-align: center;
+padding-top: 10px;
+margin-top: 0;
+padding-bottom: 0;
+margin-bottom: 0;
+}
+.yeah1{   
+color: grey;
+font-size: 20px;
+text-align: center;
+margin-top: 0;
+padding-top: 0;
+margin-bottom: 0;
+padding-bottom: 50px;
+}
+.holatxt{   
+color: grey;
+font-size: 20px;
+text-align: center;
+padding-top: 10px;
+margin-bottom: 0;
+padding-bottom: 0;
+}
+.fondo{   
+width: 100%;
+height: auto;
+background: white;
+}
+/*----------------------------------------------------------Estilos Principales-----------------------------------------------------------*/
+.tituloseccion4{   
+	color: #55a277;
+padding-left: 0;
+padding-top: 20px;
+}
+.letra{   
+	color: white;
+	
+}
+.textoseccion4{   
+color: grey;
+padding-left: 0;
+}
+.img4{  
+padding-top: 50px; 
+height: 300px;
+width: 500px;
+padding-left: 100px;
+object-fit: cover;
+}
+.mayor{
+	top: 0;
+	display:block;
+margin:auto;
+}
+.group--color .containerso{   
+background: #282526;
+color: white;
+height: 100%;
+text-align: center;
+}
+
+.column__txt{
+font-size: 15px;
+z-index: 2000;
+}
+.column__title{   
+font-size: 1.6em;
+z-index: 2000;
+}
+.main__about__description .column:nth-child(2) {   
+padding: 10px;
+}
+
+.img3{   
+margin: auto;
+max-width: 100px;
+margin-top: 20px;
+}
+.txt{   
+text-align: center;
+color: white;
+font-weight: 7px;
+}
+.letra{   
+	text-align: center;
+	font-family: 'Times New Roman', Times, serif;
+		font-size: 20px;
+}
+/*----------------------------------------------------------Estilos Responsive------------------------------------------------------------*/
+@media screen and (min-width:1080px){ 
+	.fondo4{
+	background: white;
+	height: 420px;
+}
+.banner{   
+	margin-top: -145px;	
+}
+.banner__content{   
+	font-size: 2em;
+}
+.column--50{   
+	width: 49%;
+}
+.column--50-25{   
+	width: 49%;
+}
+.column--33{   
+	width: 32%;
+}
+.main__about__description .column:nth-child(2) {   
+	padding-left: 10px;
+	font-size: .9em;	
+}
+}
+
+
+@media screen and (max-width:1079px){ 
+.column__txt{   
+	text-align: center;
+}
+.column__title{   
+	text-align: center;
+	font-size: 1.6em;
+}
+	
+	.fondo4{
+	background: white;
+	height: auto;
+}
+	.img4{  
+padding-top: 10px; 
+height: 300px;
+width: 400px;
+object-fit: cover;
+padding-left: 100px;
+}
+.banner{   
+	margin-top: -145px;
+	
+}
+.banner__content{   
+	font-size: 2em;
+}
+.main__about__description .column:nth-child(2) {   
+	padding-left: 10px;
+	font-size: .9em;
+	
+}
+
+	} 
+
+
+@media screen and (max-width:719px){
+.seg__img{   
+	top: -300px;
+height: 2000px;
+}
+.img4{   
+	padding-top: 60px;
+	margin: auto;
+    padding-left: 0;
+}
+	
+.column__title{   
+	text-align: center;
+	font-size: 1.6em;
+}
+.column__txt{   
+	text-align: center;
+	font-size: 15px;
+}
+
+.fondo4{
+	background: white;
+	height: auto;
+}
+.tituloseccion4{
+	padding-left: 10px;
+	padding-top: 20px;
+}
+.textoseccion4{
+	padding-left: 10px;
+	text-align : justify;
+}
+
+.logo{   
+width: auto;
+height: auto;
+}
+
+} 
+
+/* 02/04/2023 */
+@font-face {
+	font-family: blackrocky;
+	src: url('../fonts/Blackrocky.ttf');
+}
+
+.menuLetra:hover {
+	background: rgba(0, 0, 0, .05);
+	text-decoration: underline #ECEFD1; 
+}
+
+.menuLetra {
+	color: #ECEFD1; 
+	font-family: blackrocky;
+	font-size: 20px;
+}

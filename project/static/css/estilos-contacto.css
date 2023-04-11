@@ -1,0 +1,358 @@
+body{
+	margin: 0;
+	min-height: 100vh;
+	overflow-x:hidden;
+}
+/*----------------------------------------------------------Estilos base-------------------------------------------------------------------*/
+img{   
+display: block;
+width: 100%;
+max-width: 100%;
+}
+form{
+	width: 90%;
+	margin:auto;
+	
+	padding: 10px 20px;
+	box-sizing: border-box;
+	margin-top: 20px;
+	border-radius: 7px;
+}
+.sinc{   
+text-decoration: none;
+}
+.estilos2{   
+padding-top: 0;
+
+color: grey;
+font-size: 18px;
+}
+.estilos{   
+color: #55a277;
+font-size: 20px;
+
+margin: 0;
+font-family: 'Times New Roman', Times, serif;
+}
+input, textarea{
+	width: 100%;
+	margin-bottom: 20px;
+	padding-top: 0;
+	padding: 7px;
+	box-sizing: border-box;
+	font-size: 17px;
+
+}
+.boton{   
+color: white;
+text-align: center;
+cursor: pointer;
+}
+.contenedorboton{    
+background: #222;
+display:block;
+margin:auto;
+
+width: 105px;
+height: 40px;
+}
+.contenedorboton:hover{
+background: #55a277;
+}
+.contenedorboton {
+    transition: background 0.2s linear 0.2s;
+}
+textarea{
+	min-height: 100px;
+	max-height: 200px;
+	max-width: 420px;
+	min-width: 200px;
+}
+h1, h2, h3, h4, h5, h6{   
+margin: 0;
+}
+.containerso{   
+width: 100%;
+margin: auto;
+}
+.papa{
+background: rgba(0,0,0,.3);
+}
+.containerso--flex{   
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
+align-items: center;
+}
+.column {   
+width: 100%;
+}
+.espacio{   
+color: grey;
+font-size: 20px;
+text-align: center;
+padding-top: 0;
+margin-top: 0;
+padding-bottom: 30px;
+}
+.holatxt{   
+color: grey;
+font-size: 20px;
+text-align: center;
+padding-top: 10px;
+margin-bottom: 0;
+padding-bottom: 0;
+}
+
+.holaletra{   
+color: #55a277;
+font-size: 25px;
+text-align: center;
+padding-top: 50px;
+margin: 0;
+font-family: 'Times New Roman', Times, serif;
+}
+/*--------------------------------------------------------------------MENU----------------------------------------------------------------*/
+header{
+position: fixed;
+width: 100%;
+background: rgba(194,234,244,.5);
+top: 0;
+z-index: 200000;
+}
+#btn-menu{
+display: none;
+}
+header label{
+display: none;
+width: 40px;
+height: 40px;
+padding: 10px;
+
+}
+header label:hover{
+cursor: pointer;
+background: rgba(0,0,0,.3);
+}
+.menu ul{
+margin: 0;
+list-style: none;
+padding: 0;
+display: flex;
+justify-content: flex-start;
+}
+.menu li:hover{
+cursor: pointer;
+background: rgba(0,0,0,.3);
+}
+.menu li a{
+display: block;
+padding: 10px 20px;
+color:  black;
+text-decoration: none;
+}
+.menu a{
+	padding-top: 15px;
+	padding: 15px 10px 10px 30px;
+	display: block;
+	color: #fff;
+	text-decoration: none;
+}
+@media(max-width:719px){
+header label{
+display: block;
+border-right: 1px solid #000000;
+}
+.menu{
+position: fixed;
+background: rgba(0,0,0,.6);
+width: 50%;
+margin-left: -50%;
+transition: all 0.5s;
+height: 100%;
+background: rgba(194,234,244,.5);
+
+}
+.menu ul{
+flex-direction: column;
+
+}
+.menu li{
+border-top: 1px solid #000000;
+padding-top: 3px;
+}
+.logo3{
+	border-bottom: 1px solid #000000;
+}
+#btn-menu:checked ~ .menu{
+margin: 0;
+
+}
+}
+
+.social-icon {   
+display: flex;
+justify-content: space-between;
+}
+.social-icon [class*="icon-"] {   
+color: white;
+margin-left: 10px;
+display: flex;
+justify-content: right;
+align-items: right;
+font-size: 1.8em;
+width: 5px;
+height: 5px;
+background: white;
+border-radius: 50%;
+}
+.logo{   
+height: 60px;
+width: 150px;
+padding-top: 0;
+margin-top: 0;
+}
+.logo2{
+	padding-top: 10px;
+}
+.logo3{
+	padding-top: 10px;
+}
+.social-icon__link{
+left: 500px;
+top: 30px;
+}
+div a{
+	color: black;
+}
+
+/*----------------------------------------------------------Estilos Principales-----------------------------------------------------------*/
+.column__txt{
+font-size: 15px;
+z-index: 2000;
+padding-top: 10px;
+}
+.column__title{   
+font-size: 1.6em;
+z-index: 2000;
+}
+
+.main__about__description .column:nth-child(2) {   
+padding: 10px;
+}
+/*----------------------------------------------------------Estilos del Footer------------------------------------------------------------*/
+.main-footer{   
+background: #222;
+color: white;
+padding: 10px;
+padding-top: 20px;
+padding-bottom: 20px;
+font-size: .8em;
+}
+.pala{   
+	padding-top: 10px;
+
+}
+.claudio{
+	color: white;
+font-family: 'Lora', serif;
+}
+.claudio:hover  {
+	color: #55a277 ;
+	
+}
+.copy{   
+text-align: center;
+margin: auto;
+margin-top: 15px;
+}
+.main-footer p{
+	font-size: 1em;
+}
+.main-footer [class*="icon-"]{   
+color: white;
+text-decoration: none;
+}
+.main-footer [class*="icon-"]:before{   
+position: relative;
+top: 0;
+right: 5px;
+}
+/*----------------------------------------------------------Estilos Responsive------------------------------------------------------------*/
+@media screen and (min-width:1080px){     
+.banner{   
+	margin-top: -145px;	
+}
+.banner__content{   
+	font-size: 2em;
+}
+.column--50{   
+	width: 49%;
+}
+.column--50-25{   
+	width: 49%;
+}
+.column--33{   
+	width: 32%;
+}
+.main__about__description .column:nth-child(2) {   
+	padding-left: 10px;
+	font-size: .9em;
+}
+}
+
+@media screen and (max-width:1079px){ 
+
+.pal{   
+padding-top: 10px;
+}	
+	.column__txt{   
+	text-align: center;	
+}
+	.column__title{   
+	text-align: center;
+	font-size: 1.6em;
+}
+.banner{   
+	margin-top: -145px;	
+}
+.banner__content{   
+	font-size: 2em;
+}
+.main__about__description .column:nth-child(2) {   
+	padding-left: 10px;
+	font-size: .9em;
+	
+}
+	} 
+@media screen and (max-width:719px){
+.column__title{   
+	text-align: center;
+	font-size: 1.6em;
+}
+.column__txt{   
+	text-align: center;
+	font-size: 15px;
+}
+.logo{   
+width: auto;
+height: auto;
+}
+} 
+
+/* 02/04/2023 */
+@font-face {
+	font-family: blackrocky;
+	src: url('../fonts/Blackrocky.ttf');
+}
+
+.menuLetra:hover {
+	background: rgba(0, 0, 0, .05);
+	text-decoration: underline #ECEFD1; 
+}
+
+.menuLetra {
+	color: #ECEFD1; 
+	font-family: blackrocky;
+	font-size: 20px;
+}

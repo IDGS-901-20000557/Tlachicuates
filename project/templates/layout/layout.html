@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+        content="width=divece-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1">
+    <title>Tlachicuates - Inicio</title>
+    <link rel="icon" href="../../static/img/isotipo.png">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="../../static/bootstrap/css/bootstrap.min.css">
+    <link href="../../static/js/datatable/datatables.min.css" rel="stylesheet"/>
+
+    <!-- CUSTOM CSS -->
+    <link rel="stylesheet" href="../../static/css/styles.css">
+    <link rel="stylesheet" href="../../static/css/estilos-propios.css">
+
+    <!-- Faltantes -->
+    <link rel="stylesheet" href="../../static/css/nivo-slider.css">
+    <link rel="stylesheet" href="../../static/css/mi-slider.css">
+
+    <!-- Font -->
+    <link rel="stylesheet" type="text/css" href="../../static/fonts/fontello.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+
+    <!-- JS Animations -->
+    <script src="../../static/js/wow.min.js" type="text/javascript"></script>
+    <script>
+        new WOW().init();
+    </script>
+
+    <!-- CSS Animations -->
+    <link rel="stylesheet" href="../../static/css/animate.css">
+
+</head>
+
+<body>
+    <!-- Menu -->
+    <input type="checkbox" id="btn-menu">
+    <label for="btn-menu" class="soloMenu"><a><span class="icon-menu"></a></label>
+    <div id="sidebar" class="sidebar">
+        <h2 class="s">Tlachicuates</h2>
+        <ul>
+            {% if session.get("rol")==2 or session.get("rol")==1 %}
+            <li><a href="/administrador/CRUDDiscos">Venta</a></li>
+            {% endif %}
+            {% if session.get("rol")==1 %}
+            <li><a href="/administrador/CRUDDiscos">Recetas</a></li>
+            <li><a href="/administrador/CRUDDiscos">Insumos</a></li>
+            <li><a href="/administrador/CRUDDiscos">Avisos</a></li>
+            <li><a href="/administrador/CRUDDiscos">Inventario</a></li>
+            <li><a href="/administrador/CRUDDiscos">Finanzas</a></li>
+            <li><a href="/administrador/tlachicuates/usuarios">Usuarios</a></li>
+            <li><a href="/administrador/tlachicuates/proveedores">Proveedores</a></li>
+            {% endif %}
+
+            {% if session.get("rol")==3 %}
+            <li><a href="/administrador/CRUDDiscos">Reservaciones</a></li>
+            <li><a href="/administrador/CRUDDiscos">Compra</a></li>
+            <li><a href="/contacto">Contacto</a></li>
+            {% endif %}
+            <li><a href="/logout">Salir</a></li>
+
+
+        </ul>
+    </div>
+    <a href="/tlachicuates/inicio"><img class="logo" src="../../static/img/isotipo.png" alt=""></a>
+    <div class="container">
+        <p class="titulo wow pulse infinite slow 5s">El sabor de México</p>
+        <p class="titulo wow pulse infinite slow 5s">En tus manos</p>
+        <hr>
+    </div>
+
+    <!-- Contenido -->
+    <script type="text/javascript" src="../../static/js/jquery/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="../../static/sweetalert2/sweetalert2.all.min.js"></script>
+    {%block content %}
+
+    {%endblock%}
+
+    <div id="openModal3" class="modalDialog3">
+        <div>
+            <div class="container">
+                <div class="CargaContent" id="cookiesPopup">
+                  <img src="../../static/img/logoCircular.png" alt="logo-img" style="width: 250px;
+                  margin-bottom: 20px; padding-top: 20px;"/>
+                  <p style="color: black; font-family: fuenteMaya; font-weight: bold;  font-size: 30px;">Espere...</p>
+                </div>
+              </div>
+        </div>
+    </div>
+
+
+    <script src="../../static/js/datatable/datatables.min.js"></script>
+    <script type="text/javascript" src="../../static/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="../../static/js/generales.js"></script>
+    <script type="text/javascript" src="../../static/sweetalert2/sweetalert2.all.min.js"></script>
+    <script type="text/javascript">
+        function loading(){
+            location.href = "#openModal3";  
+        }
+        function noLoading(){
+            location.href = "#close3";
+        }
+      </script>
+    {% with messages = get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    {% if category == 'error' %}
+                        <script>
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'error',
+                                text: "{{message}}",
+                                showConfirmButton: true,
+                                timer: 5000
+                            })
+                        </script>
+                    {% else %}
+                        <script>
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                text: "{{message}}",
+                                showConfirmButton: true,
+                                timer: 5000
+                            })
+                        </script>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endwith  %}
+        
+        {% if banderaLoading %}
+        <script>
+            noLoading();
+        </script>
+          {% endif %}
+</body>
+
+</html>

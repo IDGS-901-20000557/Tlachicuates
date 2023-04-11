@@ -1,0 +1,296 @@
+.inputForm{
+    background: transparent; 
+    border: none; 
+    border-bottom: 1px solid #55a277;
+    height: 20px; 
+    margin-top: 7px;
+    font-family: 'Be Vietnam';
+      color: #373737;
+      
+}
+
+.buttonSave{
+     background-color: #4592AF  !important; 
+   border-color:   #4592AF  !important; 
+    font-family: 'Be Vietnam' !important;
+      color: #f9f9f9 !important;
+}
+
+.buttonDelete{
+     background-color: #814754 !important; 
+    border-color:   #814754  !important; 
+    font-family: 'Be Vietnam' !important;
+      color: #f9f9f9 !important;
+}
+
+*:disabled {
+    background-color: #B6A991;
+    opacity: 1;
+}
+
+
+
+.labelForm{
+    font-size: 18px;
+    color: #373737;
+    font-weight: bold;
+    font-family: 'Be Vietnam';
+}
+
+.imgDegradado::before{
+	content: "" ;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: linear-gradient(180deg, #55a277, #cda572);
+	opacity: .7;
+	z-index: 1;
+}
+
+.banner__content{   
+
+position: absolute;
+z-index: 100; 
+
+
+
+top: 50%;
+left: 50%;
+color: white;
+text-align: center;
+transform: translateX(-50%) translateY(-50%);
+font-size: 1.5em;
+font-weight: bold;
+padding: 15px;
+
+
+}
+
+
+
+.box select {
+	background-color: #B6A991;
+	text-align: center;
+	color: #f9f9f9;
+	padding: 8px;
+	border: none;
+	width: 100%;
+	font-size: 16px;
+	-webkit-appearance: button;
+	appearance: button;
+	outline: none;
+        
+          font-family: 'Be Vietnam';
+}
+select.decorated option:hover {
+    box-shadow: 0 0 10px 100px #ECEFD1 inset !important;
+}
+
+.buttonHover:hover{
+    background-color: #B6A991;
+    color: #f9f9f9;
+}
+
+
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    border: 1px solid #373737;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+	color: #373737;
+}
+
+.error{
+    background-color: #814754;
+}
+
+.error::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #f9f9f9;
+  opacity: 1; /* Firefox */
+}
+
+
+.modalDialog2 {
+	position: fixed;
+	font-family: Arial, Helvetica, sans-serif;
+	top: -20px;
+	height: 1200px;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(0,0,0,0.3);
+	z-index: 2000;
+	opacity:0;
+	-webkit-transition: opacity 400ms ease-in;
+	-moz-transition: opacity 400ms ease-in;
+	transition: opacity 400ms ease-in;
+	pointer-events: none;
+}
+.modalDialog2:target {
+	opacity:1;
+	pointer-events: auto;
+}
+.modalDialog2 > div {
+	width: 90%;
+	position: relative;
+	
+	margin: 10% auto;
+	padding: 20px 20px 20px 20px;
+	border-radius: 10px;
+    background: rgba(182, 169, 145, .5); 
+  -webkit-transition: opacity 400ms ease-in;
+-moz-transition: opacity 400ms ease-in;
+transition: opacity 400ms ease-in;
+}
+.close2 {
+	background: #606061;
+	color: #FFFFFF;
+	line-height: 25px;
+	position: absolute;
+	right: -12px;
+	text-align: center;
+	top: -10px;
+	width: 24px;
+	text-decoration: none;
+	font-weight: bold;
+	-webkit-border-radius: 12px;
+	-moz-border-radius: 12px;
+	border-radius: 12px;
+	-moz-box-shadow: 1px 1px 3px #000;
+	-webkit-box-shadow: 1px 1px 3px #000;
+	box-shadow: 1px 1px 3px #000;
+}
+.close2:hover { background: #B70E21; color: #FFFFFF;}
+
+
+/* Formulario de Contacto */
+.formContacto{
+	width: 450px;
+	margin:auto;
+	background: rgba(0,0,0,0.3);
+	padding: 10px 20px;
+	box-sizing: border-box;
+	margin-top: 20px;
+	border-radius: 7px;
+}
+
+.formContacto h2{
+	color:#fff;
+	text-align: center;
+	margin:0;
+	font-size: 30px;
+	margin-bottom: 20px;
+}
+.formContacto input, textarea{
+	width: 100%;
+	margin-bottom: 20px;
+	padding: 7px;
+	box-sizing: border-box;
+	font-size: 17px;
+	border: none;
+}
+.formContacto textarea{
+	min-height: 100px;
+	max-height: 200px;
+	max-width: 400px;
+	min-width: 200px;
+}
+.formContacto #boton{
+	background: #31384A;
+	color:#fff;
+	padding: 20px;
+
+}
+.formContacto #boton:hover{
+	cursor:pointer;
+}
+/*responsive para su adaptación en la ventana*/
+
+@media(max-width: 480px){
+	.formContacto{
+		width:100%;
+	}
+}
+
+@font-face {
+	font-family: fuenteMaya;
+	src: url('../fonts/Mayan.ttf');
+}
+
+@font-face {
+	font-family: blackrocky2;
+	src: url('../fonts/Blackrocky.ttf');
+}
+
+
+
+.modalDialog3 {
+	position: fixed;
+	font-family: Arial, Helvetica, sans-serif;
+	top: -20px;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(0,0,0,0.5);
+	z-index: 2000;
+	opacity:0;
+	-webkit-transition: opacity 400ms ease-in;
+	-moz-transition: opacity 400ms ease-in;
+	transition: opacity 400ms ease-in;
+	pointer-events: none;
+}
+.modalDialog3:target {
+	opacity:1;
+	pointer-events: auto;
+}
+.modalDialog3 > div {
+	width: 390px;
+	height: 430px !important;
+	position: relative;
+	margin: 10% auto;
+	padding: 20px 20px 20px 20px;
+	border-radius: 10px;
+	background: rgba(182, 169, 145, 0.5);
+  -webkit-transition: opacity 400ms ease-in;
+-moz-transition: opacity 400ms ease-in;
+transition: opacity 400ms ease-in;
+}
+.close3 {
+	background: #606061;
+	color: #FFFFFF;
+	line-height: 25px;
+	position: absolute;
+	right: -12px;
+	text-align: center;
+	top: -10px;
+	width: 24px;
+	text-decoration: none;
+	font-weight: bold;
+	-webkit-border-radius: 12px;
+	-moz-border-radius: 12px;
+	border-radius: 12px;
+	-moz-box-shadow: 1px 1px 3px #000;
+	-webkit-box-shadow: 1px 1px 3px #000;
+	box-shadow: 1px 1px 3px #000;
+}
+.close3:hover { background: #B70E21; color: #000;}
+
+.CargaContent {
+	width: 320px;
+	height: 400px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: rgba(227, 196, 168, 0.5);
+	color: #000;
+	text-align: center;
+	border-radius: 20px;
+	padding: 30px 30px 70px;
+}

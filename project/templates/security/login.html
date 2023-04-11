@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>¡Bienvenido!</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="../../static/img/isotipo.png">
+
+
+    <!-- Fuentes -->
+    <link rel="stylesheet" href="../../static/font_awesome_5_15_3/css/all.min.css" type="text/css">
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../../static/css/style.css">
+    <link rel="stylesheet" href="../../static/css/estilos-propios.css">
+
+
+</head>
+
+<body style="padding: 0; margin: 0; background-color: #B6A991;">
+
+    <div class="row" style="margin: 0; padding:  0; height: 100vh;">
+        <div class="col-6 imgDegradado" style="padding: 0; margin: 0; max-height: 1000px; max-height: 100vh; overflow: auto; ">
+            <div class="banner__content"> <img src="../../static/img/isotipo.png" alt="" class=""
+                    style="height: 100%; width: 100%;"></div>
+            <img src="../../static/img/segundaInndex.jpg" alt="" class="" style="height: 100%; width: 100%; z-index: -1">
+
+        </div>
+
+
+        <div class="col-6" style="margin-top: auto; margin-bottom: auto; ">
+
+
+            <form id="login" class="shadow p-3 bg-white rounded" style="background-color: #E3C4A8 !important" method="POST" action="/loginTlachicuates">
+                <div class="icon d-flex align-items-center justify-content-center shadow"
+                    style="background-color: #33313B;">
+                    <img src="../../static/img/logoCircular.png" class="" style="width: 15%; height: 15%; margin: 10px 0 10px 0;">
+                </div>
+                <div class="card-header shadow" style="background-color: #55a277 !important;">
+                    <div class="row">
+                        <div class="col-12 ">
+                            <span class="h5"
+                                style="color: white; 	font-family: fuenteMaya; font-weight: bold; ">Tlachicuates</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" style="padding-top: 18px">
+                    <label for="txtUsuario" class="labelForm">Correo:</label>
+                    <input id="txtUsuario" type="email" class="form-control rounded-left inputForm" placeholder="Correo"
+                        required name="email">
+                </div>
+                <div class="form-group">
+                    <label for="txtContrasenia" class="labelForm">Contraseña: <a style="cursor: pointer;" onclick="verPass('txtContrasenia')"><i
+                                class="fas fa-eye" style="color: #55a277 "></i></a></label><br>
+                    <input id="txtContrasenia" type="password" class="form-control rounded-left inputForm"
+                        placeholder="Contraseña" required name="password">
+                </div>
+                <div class="form-group shadow">
+                    <button type="submit" id="btn-login" class="form-control btn rounded submit px-3 text-white" onclick="loading();"
+                        style="background-color: #55a277; color: #f9f9f9;   font-family: 'Be Vietnam';    ">Inicia
+                        Sesión</button>
+                </div>
+                <hr>
+                <div class="form-group ">
+
+                    <button type="button" class="form-control btn btn-success text-white shadow"
+                        style="background-color: #4592AF; color: #f9f9f9;   font-family: 'Be Vietnam';"
+                        onclick="location.href = '#openModal2';">
+                        Crear cuenta nueva
+                    </button>
+                </div>
+
+               
+            </form>
+        </div>
+
+
+
+    </div>
+
+    <div id="openModal2" class="modalDialog2">
+        <div>
+            <form id="register" method="POST" action="/register">
+                <a href="#close2" title="Close2" class="close2">X</a>
+                <div id="divTablaReservaciones" class="col-12">
+                    <div class="card shadow" style="background-color: #E3C4A8 !important">
+                        <div class="card-header shadow" style="background-color: #55a277 !important;">
+                            <div class="row">
+                                <div class="col-12 ">
+                                    <span class="h5"
+                                        style="color: #f9f9f9; font-family: fuenteMaya;  font-weight: bold; ">Registrate</span>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group row pt-3">
+                                <div class="col-4">
+                                    <label for="txtNombre" class="labelForm">Nombre:</label>
+                                    <input id="txtNombre" type="text" class="form-control rounded-left inputForm"
+                                        placeholder="Nombre" required name="name">
+                                </div>
+                                <div class="col-4">
+                                    <label for="txtApePaterno" class="labelForm">Apellido
+                                        Paterno:</label>
+                                    <input id="txtApePaterno" type="text" class="form-control rounded-left inputForm"
+                                        placeholder="Apellido Paterno" required name="apellidoP">
+                                </div>
+                                <div class="col-4">
+                                    <label for="txtApeMaterno" class="labelForm">Apellido
+                                        Materno:</label>
+                                    <input id="txtApeMaterno" type="text" class="form-control rounded-left inputForm"
+                                        placeholder="Apellido Materno" required name="apellidoM">
+                                </div>
+                            </div>
+                            <div class="form-group row pt-3">
+                                <div class="col-4">
+                                    <label for="txtCorreo2" class="labelForm">Correo:</label>
+                                    <input id="txtCorreo2" type="email" class="form-control rounded-left inputForm"
+                                        placeholder="Correo" required name="email">
+                                </div>
+                                <div class="col-4">
+                                    <label for="txtContrasenia2" class="labelForm">Contraseña: <a style="cursor: pointer;"
+                                            onclick="verPass('txtContrasenia2')"><i class="fas fa-eye"
+                                                style="color: #55a277"></i></a></label>
+                                    <input id="txtContrasenia2" type="password"
+                                        class="form-control rounded-left inputForm" placeholder="Contraseña" required name="password">
+                                </div>
+                                <div class="col-4">
+                                    <label for="txtTelefono" class="labelForm">Teléfono:</label>
+                                    <input id="txtTelefono" type="tel" class="form-control rounded-left inputForm"
+                                        placeholder="Teléfono" required name="telefono">
+                                </div>
+
+                            </div>
+                            <div class="form-group shadow">
+                                <button type="submit" id="btn-registrar"
+                                    class="form-control btn rounded submit px-3 text-white"
+                                    style="background-color: #55a277; color: #f9f9f9;   font-family: 'Be Vietnam';    " onclick="loading();">Registrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="openModal3" class="modalDialog3">
+        <div>
+            <div class="container">
+                <div class="CargaContent" id="cookiesPopup">
+                  <img src="../../static/img/logoCircular.png" alt="logo-img" style="width: 250px;
+                  margin-bottom: 20px; padding-top: 20px;"/>
+                  <p style="color: black; font-family: fuenteMaya; font-weight: bold;  font-size: 30px;">Espere...</p>
+                </div>
+              </div>
+        </div>
+    </div>
+
+    <script src="../../static/js/generales.js"></script>
+    <script type="text/javascript" src="../../static/sweetalert2/sweetalert2.all.min.js"></script>
+    <script type="text/javascript">
+        function loading(){
+            location.href = "#openModal3";  
+        }
+        function noLoading(){
+            location.href = "#close3";
+        }
+      </script>
+    {% with messages = get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    {% if category == 'error' %}
+                        <script>
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'error',
+                                text: "{{message}}",
+                                showConfirmButton: true,
+                                timer: 5000
+                            })
+                        </script>
+                    {% else %}
+                        <script>
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                text: "{{message}}",
+                                showConfirmButton: true,
+                                timer: 5000
+                            })
+                        </script>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endwith  %}
+        
+        {% if banderaLoading %}
+        <script>
+            noLoading();
+        </script>
+          {% endif %}
+</body>
+
+</html>
