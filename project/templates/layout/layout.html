@@ -48,14 +48,13 @@
         <h2 class="s">Tlachicuates</h2>
         <ul>
             {% if session.get("rol")==2 or session.get("rol")==1 %}
-            <li><a href="/administrador/CRUDDiscos">Venta</a></li>
+            <li><a href="/administrador/CRUDDiscos">Venta</a></li> <!-- Segundo -->
             {% endif %}
             {% if session.get("rol")==1 %}
-            <li><a href="/administrador/CRUDDiscos">Recetas</a></li>
-            <li><a href="/administrador/CRUDDiscos">Insumos</a></li>
-            <li><a href="/administrador/CRUDDiscos">Avisos</a></li>
-            <li><a href="/administrador/CRUDDiscos">Inventario</a></li>
-            <li><a href="/administrador/CRUDDiscos">Finanzas</a></li>
+            <li><a href="/administrador/tlachicuates/recetas">Recetas</a></li>
+            <li><a href="/administrador/tlachicuates/insumos">Insumos</a></li>
+            <li><a href="/administrador/CRUDDiscos">Inventario</a></li> <!-- Primero -->
+            <li><a href="/administrador/CRUDDiscos">Finanzas</a></li> <!-- Tercero -->
             <li><a href="/administrador/tlachicuates/usuarios">Usuarios</a></li>
             <li><a href="/administrador/tlachicuates/proveedores">Proveedores</a></li>
             {% endif %}
@@ -63,7 +62,7 @@
             {% if session.get("rol")==3 %}
             <li><a href="/administrador/CRUDDiscos">Reservaciones</a></li>
             <li><a href="/administrador/CRUDDiscos">Compra</a></li>
-            <li><a href="/contacto">Contacto</a></li>
+            <li><a href="/cliente/tlachicuates/contacto">Contacto</a></li>
             {% endif %}
             <li><a href="/logout">Salir</a></li>
 
@@ -80,6 +79,14 @@
     <!-- Contenido -->
     <script type="text/javascript" src="../../static/js/jquery/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="../../static/sweetalert2/sweetalert2.all.min.js"></script>
+    <script type="text/javascript">
+        function loading(){
+            location.href = "#openModal3";  
+        }
+        function noLoading(){
+            location.href = "#close3";
+        }
+      </script>
     {%block content %}
 
     {%endblock%}
@@ -101,14 +108,7 @@
     <script type="text/javascript" src="../../static/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="../../static/js/generales.js"></script>
     <script type="text/javascript" src="../../static/sweetalert2/sweetalert2.all.min.js"></script>
-    <script type="text/javascript">
-        function loading(){
-            location.href = "#openModal3";  
-        }
-        function noLoading(){
-            location.href = "#close3";
-        }
-      </script>
+    
     {% with messages = get_flashed_messages(with_categories=True) %}
             {% if messages %}
                 {% for category, message in messages %}

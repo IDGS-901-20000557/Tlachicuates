@@ -16,7 +16,8 @@ def modificarInsertarUsuario(idUsuario,idUsuarioNew, idRol, nombre, apellidom,ap
                                     (idUsuario, idUsuarioNew, idRol, nombre, apellidom,apellidop,
                                         email,generate_password_hash(contrasennia, method='sha256'), telefono))
                     connection.commit()    
-                    connection.close()  
+                    connection.close() 
+                    flash('Usuario modificado', category='success')   
                 else:
                     #Consultamos si existe un usuario ya registrado con el email.
                     user = User.query.filter_by(email=email).first()
@@ -29,7 +30,8 @@ def modificarInsertarUsuario(idUsuario,idUsuarioNew, idRol, nombre, apellidom,ap
                                     (idUsuario, -1, idRol, nombre, apellidom,apellidop,
                                         email,generate_password_hash(contrasennia, method='sha256'), telefono))
                     connection.commit()    
-                    connection.close()  
+                    connection.close()
+                    flash('Usuario registrado', category='success')  
     except Exception as ex:
                 now = datetime.now()
                 auth.logger.warning('Excepción a la hora de registrar: '+ str(ex) + ' a la fecha: ' + str(now))
@@ -71,7 +73,8 @@ def eliminarUsuario(idUsuario,idUsuarioNew):
                         curso.execute('CALL SP_eliminar_usuario(%s,%s,@var_salida)',
                                     (idUsuario, idUsuarioNew))
                     connection.commit()    
-                    connection.close()  
+                    connection.close()
+                    flash('Usuario eliminado', category='success')    
     except Exception as ex:
                 now = datetime.now()
                 auth.logger.warning('Excepción a la hora de eliminar usuario: '+ str(ex) + ' a la fecha: ' + str(now))

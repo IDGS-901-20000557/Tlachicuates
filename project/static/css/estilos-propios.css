@@ -170,6 +170,63 @@ transition: opacity 400ms ease-in;
 .close2:hover { background: #B70E21; color: #FFFFFF;}
 
 
+.modalDialog4 {
+	position: fixed;
+	font-family: Arial, Helvetica, sans-serif;
+	top: -20px;
+	height: 1200px;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(0,0,0,0.3);
+	z-index: 200;
+	opacity:0;
+	-webkit-transition: opacity 400ms ease-in;
+	-moz-transition: opacity 400ms ease-in;
+	transition: opacity 400ms ease-in;
+	pointer-events: none;
+}
+.modalDialog4:target {
+	opacity:1;
+	pointer-events: auto;
+}
+.modalDialog4 > div {
+	width: 90%;
+	position: relative;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	scrollbar-color: #cda572 #373737;
+  scrollbar-width: thin;
+  height: 30%;
+	margin: 10% auto;
+	padding: 20px 20px 20px 20px;
+	border-radius: 10px;
+    background: rgba(182, 169, 145, .5); 
+  -webkit-transition: opacity 400ms ease-in;
+-moz-transition: opacity 400ms ease-in;
+transition: opacity 400ms ease-in;
+}
+.close4 {
+	background: #606061;
+	color: #FFFFFF;
+	line-height: 25px;
+	position: absolute;
+	right: -12px;
+	text-align: center;
+	top: -10px;
+	width: 24px;
+	text-decoration: none;
+	font-weight: bold;
+	-webkit-border-radius: 12px;
+	-moz-border-radius: 12px;
+	border-radius: 12px;
+	-moz-box-shadow: 1px 1px 3px #000;
+	-webkit-box-shadow: 1px 1px 3px #000;
+	box-shadow: 1px 1px 3px #000;
+}
+.close4:hover { background: #B70E21; color: #FFFFFF;}
+
+
 /* Formulario de Contacto */
 .formContacto{
 	width: 450px;
@@ -294,3 +351,5 @@ transition: opacity 400ms ease-in;
 	border-radius: 20px;
 	padding: 30px 30px 70px;
 }
+
+

@@ -34,14 +34,13 @@ function mostrarDetalleUsuario(idUsuario) {
 }
 
 function loadingUsuarios(){
-if($('#txtCodigoU').val('') ||
-$('#txtNombre').val('') ||
-$('#txtApePaterno').val('') ||
-$('#txtApeMaterno').val('') ||
-$('#txtTelefono').val('') ||
-$('#txtemail').val('') ||
-$('#txtContrasennia').val('')){
-
+if($('#txtNombre').val().length == 0 ||
+$('#txtApePaterno').val().length == 0 ||
+$('#txtApeMaterno').val().length == 0 ||
+$('#txtTelefono').val().length == 0 ||
+$('#txtemail').val().length == 0 ||
+$('#txtContrasennia').val().length == 0){
+    
 }else{
     loading();
 }

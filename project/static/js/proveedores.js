@@ -35,15 +35,14 @@ function mostrarDetalleProveedor(idProveedor) {
 }
 
 function loadingProveedores(){
-    if(    $('#txtCodigoP').val('')||
-    $('#txtNombre').val('') ||
-    $('#txtApePaterno').val('') ||
-    $('#txtApeMaterno').val('') ||
-    $('#txtTelefono').val('') ||
-    $('#txtproveedor').val('') ||
-    $('#txtemail').val('') ||
-    $('#txtCodigoU').val('')){
-    
+    if(
+    $('#txtNombre').val().length == 0 ||
+    $('#txtApePaterno').val().length == 0 ||
+    $('#txtApeMaterno').val().length == 0||
+    $('#txtTelefono').val().length == 0 ||
+    $('#txtproveedor').val().length == 0 ||
+    $('#txtemail').val().length == 0){
+       
     }else{
         loading();
     }
