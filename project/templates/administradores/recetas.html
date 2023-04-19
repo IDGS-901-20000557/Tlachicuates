@@ -1,0 +1,386 @@
+{% extends "layout/layout.html" %}
+{% block content%}
+
+<script type="text/javascript" src="../../static/js/recetas.js"></script>
+<section style="margin-bottom: 10px;">
+    <div class="wow bounceInUp" data-wow-delay="0.1s">
+        <h1 style="text-align: center;color: white; font-family: mayan;  font-weight: bold; ">
+            Productos</h1>
+    </div>
+</section>
+
+<div class="row my-3" style="padding: 0 !important; margin: 0 0 0 0 !important; background-color: #B6A991 ;">
+    <form id="divDetalleProducto" class="col-5" method="POST" action="/administrador/tlachicuates/recetas">
+        <div class="card shadow" style="background-color: #E3C4A8 ">
+            <input type="hidden" value="" id="bandera1" name="bandera1">
+            <input type="hidden" value="" id="banderaInsumos" name="banderaInsumos">
+            <div class="card-header" style="background-color: #55a277 !important;">
+                <div class="row">
+                    <div class="col-10" style="display: table;">
+                        <span class="h5" style="color: #E3C4A8; font-family:  'Alegreya Sans SC';  font-weight: bold;  display:table-cell;
+                              vertical-align:middle;">Detalle del Producto</span>
+                    </div>
+                    <div class="col-2">
+                        <button class="btn-sm btn-outline-danger float-end" type="button"
+                            onclick="setFormularioDetalleVisible(false);"><i class="fas fa-times"></i></button>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="form">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="col-12">
+                                <label for="txtCodigoP" class="labelForm">Código del Producto</label>
+                                <input id="txtCodigoP" name="txtCodigoP" type="text" {%if producto%} value="{{producto[0]}}"
+                                    {%endif%} class="form-control rounded-left inputForm" placeholder="Codigo"
+                                    readonly />
+                            </div>
+                            <div class="my-3">
+                                <label for="codigoImagen" class="labelForm">C&oacute;digo de la imagen</label>
+                                <input id="codigoImagen" type="text" required
+                                    class="form-control rounded-left inputForm" placeholder="Codigo" readonly
+                                    name="portada" {%if producto%} value="{{producto[3]}}" {%endif%} />
+                            </div>
+                            <div class="my-3">
+                                <label for="txtNombreP" class="labelForm">Nombre del producto</label>
+                                <input id="txtNombreP" type="text" required class="form-control rounded-left inputForm"
+                                    placeholder="Nombre" name="txtNombreP" {%if producto%} value="{{producto[1]}}"
+                                    {%endif%} />
+                            </div>
+                            <div class="my-3">
+                                <label for="txtCosto" class="labelForm">Costo del producto</label>
+                                <input id="txtCosto" type="number" required class="form-control rounded-left inputForm"
+                                    placeholder="Costo" name="txtCosto" {%if producto%} value="{{producto[4]}}"
+                                    {%endif%} />
+                            </div>
+                            <div class="my-3">
+                                <label for="txtPrecio" class="labelForm">Precio</label>
+                                <input id="txtPrecio" type="number" class="form-control rounded-left inputForm" min="1"
+                                    placeholder="Precio" required name="txtPrecio" {%if producto%}
+                                    value="{{producto[5]}}" {%endif%} />
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="col-12">
+                                <div class="text-center">
+                                    <iframe id="fotoPortada" width="200" height="280" {%if
+                                        producto%}src="{{producto[3]}}" {%endif%}></iframe>
+                                    <div class="pt-2" id="labelImg">
+                                        <label class="custom-file-upload">
+                                            <input type="file" onchange="cargarFotografia();" class=""
+                                                id="inputFileFoto" accept="image/png, image/jpg, image/jpeg" />
+                                            Seleccioné portada
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="my-3">
+                                <label for="txtDescripcion" class="labelForm">Descripción</label>
+                                <textarea id="txtDescripcion" class="form-control rounded-left "
+                                    style="background: transparent; border: none;  border: 1px solid #478174;height: 80px; margin-top: 7px;font-family: 'Be Vietnam';color: #373737;"
+                                    placeholder="Escriba aquí la descripción" required
+                                    name="txtDescripcion">{%if producto%}{{producto[2]}} {%endif%}</textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="my-3">
+                                <label for="txtObservaciones" class="labelForm">Observaciones</label>
+                                <textarea id="txtObservaciones" class="form-control rounded-left "
+                                    style="background: transparent; border: none;  border: 1px solid #478174;height: 80px; margin-top: 7px;font-family: 'Be Vietnam';color: #373737;"
+                                    placeholder="Escriba aquí las observaciones" required
+                                    name="txtObservaciones">{%if producto%}{{producto[6]}} {%endif%}</textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="my-3" id="txtPreciodiv">
+                                <button type="button" class="form-control btn btn-success text-white shadow"
+                                    style="background-color: #55a277; color: #f9f9f9;   font-family: 'Be Vietnam';"
+                                    onclick="location.href = '#openModal4';">
+                                    Agregar Insumos
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="my-4 text-center" id="buttonsAdmin">
+                <button class="btn btn-primary buttonSave" type="submit"
+                    onclick="$('#bandera1').val(1); loadingProductos();"><i class="fas fa-save " style="color: #f9f9f9"
+                        type="button"></i>&nbsp;&nbsp;Guardar</button>
+                <button class="btn btn-danger mx-3 buttonDelete" type="submit"
+                    onclick="$('#bandera1').val(2); loadingProductos();"><i class="fas fa-trash "
+                        style="color: #f9f9f9"></i>&nbsp;&nbsp;Eliminar</button>
+                <button class="btn btn-primary" onclick="limpiarFormulario(); " type="button"><i
+                        class="fas fa-backspace" style="color: #f9f9f9"></i>&nbsp;&nbsp;Nuevo</button>
+            </div>
+        </div>
+    </form>
+
+    <form id="divTablaProductos" class="col-12" method="POST" action="/administrador/tlachicuates/receta">
+        <input type="hidden" value="" id="banderaOjo" name="bandera">
+        <div class="card shadow" style="background-color: #E3C4A8 ">
+
+            <div class="card-header " style="background-color: #55a277 !important;">
+                <div class="row">
+                    <div class="col-4 " style="display:table;">
+                        <span class="h5" style="color: #E3C4A8; font-family:  'Alegreya Sans SC';  font-weight: bold;  display:table-cell;
+                              vertical-align:middle;">Catálogo de Productos</span>
+                    </div>
+
+
+                    <div class="col-5  " id="buttonAddAdmin">
+                        <button class="btn-sm btn-outline-success float-end mx-4" type="button"
+                            onclick="setFormularioDetalleVisible(true);"><i class="fas fa-plus">&nbsp;&nbsp;Agregar
+                                Nuevo</i></button>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="card-body">
+                <table class="table table-hover" id="tablaProductos">
+                    <thead class="text-center"
+                        style="color: #373737;  font-family: 'Alegreya Sans SC';  font-weight: bold;">
+                        <tr>
+                            <th>Nombre Producto</th>
+                            <th>Unidad</th>
+                            <th>Precio</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbodyProductos" style="color: #373737;  font-family: 'Be Vietnam';" class="text-center">
+                        {%for Producto in productos %}
+                        <tr>
+                            <td>{{Producto[1]}}</td>
+                            <td>{{Producto[2]}}</td>
+                            <td>{{Producto[3]}}</td>
+                            <td><button><a type="submit"
+                                        onclick="mostrarDetalleProducto('{{Producto[0]}}'); loading();"><i
+                                            class="fas fa-eye"></i></a></button> </td>
+                        </tr>
+                        {%endfor%}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </form>
+</div>
+</div>
+
+
+<footer class="text-center text-white" style="background-color: #f1f1f1; padding: 0 !important; margin: 0 !important"">
+    <!-- Grid container -->
+    <div class=" container pt-4">
+
+    <!-- Section: Social media -->
+    <section class="mb-2">
+        <!-- Facebook -->
+        <a class="btn btn-link btn-floating btn-lg m-1" href="#!" role="button" data-mdb-ripple-color="dark"><i
+                class="fab fa-facebook-f"></i></a>
+
+        <!-- Twitter -->
+        <a class="btn btn-link btn-floating btn-lg  m-1" href="#!" role="button" data-mdb-ripple-color="dark"><i
+                class="fab fa-twitter"></i></a>
+
+        <!-- Instagram -->
+        <a class="btn btn-link btn-floating btn-lg m-1" href="#!" role="button" data-mdb-ripple-color="dark"><i
+                class="fab fa-instagram"></i></a>
+
+
+    </section>
+    <!-- Section: Social media -->
+    </div>
+
+    <div class="text-dark mb-2">
+        <p>¡Siguenos en nuestras redes para estar al tanto de todas las novedades!</p>
+    </div>
+
+    <!-- Copyright -->
+    <div class="text-center text-white p-3" style="background-color: #373737; color: #f9f9f9;">
+        © 2023 Copyright: Designed by TLACHICUATES
+    </div>
+    <!-- Copyright -->
+</footer>
+
+
+<div id="openModal4" class="modalDialog4">
+    <div>
+        <div>
+            <a href="#close4" title="Close4" class="close4">X</a>
+            <div id="divTablaReservaciones" class="col-12">
+                <div class="card shadow" style="background-color: #E3C4A8 !important">
+                    <div class="card-header shadow" style="background-color: #55a277 !important;">
+                        <div class="row">
+                            <div class="col-12 ">
+                                <span class="h5"
+                                    style="color: #f9f9f9; font-family: fuenteMaya;  font-weight: bold; ">Agregar
+                                    Insumos</span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="card-body">
+
+                        <div class="form-group row">
+                            <select id="txtInsumo" name="txtInsumo" style="visibility:hidden;">
+                                {%if insumos%}
+                               
+                                {%for insumo in insumos %}
+                                <option value="{{insumo[0]}}" id="{{insumo[2]}}" name="{{insumo[3]}}">{{insumo[1]}}
+                                </option>
+                                {%endfor%}
+                                {%endif%}
+                            </select>
+                            {%if not recetas%}
+                            <div class="col-4">
+                                <label for="txtInsumo1" class="labelForm">Insumo:</label>
+                                <div class="box" style="width: 100%; cursor: pointer;">
+                                    <select id="txtInsumo1" name="txtInsumo1"
+                                        onchange="setParametros('txtInsumo1','txtCosto1','txtUnidad1')">
+
+                                    </select>
+                                </div>
+                            </div>
+                            <script>
+                                /* CHALE */
+                                $('#txtInsumo1').html($('#txtInsumo').html());
+                            </script>
+                            <div class="col-2">
+                                <label for="txtCosto1" class="labelForm">Costo:</label>
+                                <input id="txtCosto1" type="text" class="form-control rounded-left inputForm"
+                                    placeholder="Costo" required name="txtCosto1" readonly>
+                            </div>
+                            <div class="col-4">
+                                <label for="txtUnidad1" class="labelForm">Unidad:</label>
+                                <input id="txtUnidad1" type="text" class="form-control rounded-left inputForm"
+                                    placeholder="Unidad" required name="txtUnidad1" readonly>
+                            </div>
+                            <div class="col-2">
+                                <label for="txtCantidad1" class="labelForm">Cantidad:</label>
+                                <input id="txtCantidad1" type="number" class="form-control rounded-left inputForm"
+                                    placeholder="Cantidad" required name="txtCantidad1">
+                            </div>
+                            {%endif%}
+                        </div>
+                        <div id="contenedorInsumos">
+                            {%if recetas%}
+                            {% for receta in range(recetas|length) %}
+                            <div class="row form-group" id="contenedorInsumo{{receta+1}}">
+                                <div class="col-4">
+                                    <label for="txtInsumo{{receta+1}}" class="labelForm">Insumo:</label>
+                                    <div class="box" style="width: 100%; cursor: pointer;">
+                                        <select id="txtInsumo{{receta+1}}" name="txtInsumo{{receta+1}}"
+                                            onchange="setParametros('txtInsumo{{receta+1}}','txtCosto{{receta+1}}','txtUnidad{{receta+1}}')">
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <script>
+                                    /* CHALE */
+                                    $('#txtInsumo{{receta+1}}').html($('#txtInsumo').html());
+                                    // Obtener el elemento select
+                                    var selectElement = document.getElementById('txtInsumo{{receta+1}}');
+
+                                    // Valor a buscar
+                                    var valorBuscado = '{{recetas[receta][0]}}';
+
+                                    // Recorrer las opciones del select
+                                    for (var i = 0; i < selectElement.options.length; i++) {
+                                        var opcion = selectElement.options[i];
+
+                                        // Verificar si el valor de la opción coincide con el valor buscado
+                                        if (opcion.value === valorBuscado) {
+                                            // Establecer el atributo "selected" en la opción
+                                            opcion.selected = true;
+                                            break;  // Salir del bucle una vez que se encuentre la coincidencia
+                                        }
+                                    }
+                                </script>
+                                <div class="col-2">
+                                    <label for="txtCosto{{receta+1}}" class="labelForm">Costo:</label>
+                                    <input id="txtCosto{{receta+1}}" type="text" class="form-control rounded-left inputForm"
+                                        placeholder="Costo" required value="{{recetas[receta][1]}}" name="txtCosto{{receta+1}}" readonly>
+                                </div>
+                                <div class="col-4">
+                                    <label for="txtUnidad{{receta+1}}" class="labelForm">Unidad:</label>
+                                    <input id="txtUnidad{{receta+1}}" type="text" class="form-control rounded-left inputForm"
+                                        placeholder="Unidad" required value="{{recetas[receta][2]}}" name="txtUnidad{{receta+1}}" readonly>
+                                </div>
+                                <div class="col-2">
+                                    <label for="txtCantidad{{receta+1}}" class="labelForm">Cantidad:</label>
+                                    <input id="txtCantidad{{receta+1}}" type="number" class="form-control rounded-left inputForm"
+                                        placeholder="Cantidad" required value="{{recetas[receta][3]}}" name="txtCantidad{{receta+1}}">
+                                </div>
+
+                            </div>
+                            {% endfor %}
+                            <script>
+                                cambiarLongitud("{{longitud}}");
+                            </script>
+                            {%endif%}
+                        </div>
+
+                        <div class="form-group row pt-2 my-3">
+                            <div class="col-12">
+                                <button class="btn btn-primary buttonSave" type="button" onclick="crearElementos();"><i
+                                        class="fas fa-save " style="color: #f9f9f9"
+                                        type="button"></i>&nbsp;&nbsp;Agregar</button>
+                                <button class="btn btn-danger mx-3 buttonDelete" type="button"
+                                    onclick="eliminarElementos();"><i class="fas fa-trash "
+                                        style="color: #f9f9f9"></i>&nbsp;&nbsp;Eliminar</button>
+
+                            </div>
+                        </div>
+                        <div class="form-group shadow my-3">
+                            <button type="button" id="btn-registrar"
+                                class="form-control btn rounded submit px-3 text-white"
+                                style="background-color: #55a277; color: #f9f9f9;   font-family: 'Be Vietnam';    "
+                                onclick="agregarInputInsumos();">Registrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{%if producto%}
+<script>
+    $("#txtProveedor option[value='{{producto[2]}}']").prop("selected", true);
+    $("#txtUnidad option[value='{{producto[3]}}']").prop("selected", true);
+</script>
+{%endif%}
+
+<script type="text/javascript">
+    inicializarModuloProductos();
+</script>
+<script>
+        //puedes deshabilitar el paginador
+        $(document).ready(function () {
+            $('#tablaProductos').DataTable({
+                "columnDefs": [
+                    { "orderable": false, "targets": 3 }
+                ]
+            });
+        });
+
+</script>
+{% endblock %}

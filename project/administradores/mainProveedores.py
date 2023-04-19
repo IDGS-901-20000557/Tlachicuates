@@ -28,7 +28,8 @@ def modificarInsertarProveedor(idUsuario,idUsuarioNew, idProveedor, nombreEmpres
                                     (idUsuario, idUsuarioNew, idProveedor, nombreEmpresa, nombre, apellidom,apellidop,
                                         email, telefono))
                     connection.commit()    
-                    connection.close()  
+                    connection.close()
+                    flash('proveedor modificado', category='success')    
                 else:
                     #Consultamos si existe un usuario ya registrado con el email.
                     user = User.query.filter_by(email=email).first()
@@ -41,8 +42,39 @@ def modificarInsertarProveedor(idUsuario,idUsuarioNew, idProveedor, nombreEmpres
                                     (idUsuario, -1, -1, nombreEmpresa, nombre, apellidom,apellidop,
                                         email, telefono))
                     connection.commit()    
-                    connection.close()  
+                    connection.close()
+                    flash('proveedor registrado', category='success')    
     except Exception as ex:
                 now = datetime.now()
                 auth.logger.warning('Excepción a la hora de registrar proveedor: '+ str(ex) + ' a la fecha: ' + str(now))
                 flash('Hubo un error a la hora de registrar el proveedor', category='error')
+
+
+
+def consultarProveedor(idUsuario):
+    try:
+            connection=get_connection()
+            with connection.cursor() as curso:
+                curso.execute('call SP_mostrar_proveedor(%s)',(idUsuario,))
+                resultset=curso.fetchone()
+            connection.close()
+            return resultset
+    except Exception as ex:
+             now = datetime.now()
+             auth.logger.warning('Excepción a la hora de consultar proveedor: '+ str(ex) + ' a la fecha: ' + str(now))
+             flash('Hubo un error a la hora de consultar el proveedor', category='error')
+
+
+def eliminarProveedor(idUsuario,idProveedor):
+    try:
+                    connection=get_connection()
+                    with connection.cursor() as curso:
+                        curso.execute('CALL SP_eliminar_proveedor(%s,%s,@var_salida)',
+                                    (idUsuario, idProveedor))
+                    connection.commit()    
+                    connection.close()
+                    flash('Proveedor eliminado', category='success')    
+    except Exception as ex:
+                now = datetime.now()
+                auth.logger.warning('Excepción a la hora de eliminar proveedor: '+ str(ex) + ' a la fecha: ' + str(now))
+                flash('Hubo un error a la hora de eliminar el proveedor', category='error')

@@ -5,15 +5,11 @@
     <div class="wow bounceInUp" data-wow-delay="0.1s">
         <h1 style="text-align: center;color: white; font-family: mayan;  font-weight: bold; ">
             Proveedores</h1>
-        <img src="media/linea.png" alt="" style="display: block;
-             margin-left: auto;
-             margin-right: auto; width: 60px;">
     </div>
 </section>
 
 <div class="row my-3" style="padding: 0 !important; margin: 0 0 0 0 !important; background-color: #B6A991 ;">
-
-    <form id="divDetalleProveedor" class="col-5" method="POST" action="/administrador/tlachicuates/Proveedores">
+    <form id="divDetalleProveedor" class="col-5" method="POST" action="/administrador/tlachicuates/proveedores">
         <div class="card shadow" style="background-color: #E3C4A8 ">
             <input type="hidden" value="" id="bandera1" name="bandera1">
             <div class="card-header" style="background-color: #55a277 !important;">
@@ -35,12 +31,12 @@
                         <div class="col-6">
                             <label for="txtCodigoP" class="labelForm">Código del Proveedor</label>
                             <input id="txtCodigoP" type="text" class="form-control rounded-left inputForm"
-                                placeholder="Codigo" readonly name="txtCodigoP" {%if Proveedor%} value="{{Proveedor[0]}}" {%endif%} />
+                                placeholder="Codigo" readonly name="txtCodigoP" {%if proveedor%} value="{{proveedor[0]}}" {%endif%} />
                         </div>
                         <div class="col-6">
                             <label for="txtCodigoU" class="labelForm">Código del Usuario</label>
                             <input id="txtCodigoU" type="text" class="form-control rounded-left inputForm"
-                                placeholder="Codigo" readonly name="txtCodigoU" {%if Proveedor%} value="{{Proveedor[0]}}" {%endif%} />
+                                placeholder="Codigo" readonly name="txtCodigoU" {%if proveedor%} value="{{proveedor[1]}}" {%endif%} />
                         </div>
                     </div>
                     <div class="row">
@@ -50,7 +46,7 @@
                             <div class="my-3" id="txtNombrediv">
                                 <label for="txtNombre" class="labelForm">Nombre</label>
                                 <input id="txtNombre" type="text" class="form-control rounded-left inputForm"
-                                    placeholder="Nombre" required name="txtNombre" {%if Proveedor%} value="{{Proveedor[1]}}" {%endif%}/>
+                                    placeholder="Nombre" required name="txtNombre" {%if proveedor%} value="{{proveedor[2]}}" {%endif%}/>
                             </div>
                         </div>
                         <div class="col-6">
@@ -58,7 +54,7 @@
                             <div class="my-3" id="txtApePaternodiv">
                                 <label for="txtApePaterno" class="labelForm">Apellido Paterno</label>
                                 <input id="txtApePaterno" type="text" class="form-control rounded-left inputForm"
-                                    placeholder="Apellido Paterno" required name="txtApePaterno" {%if Proveedor%} value="{{Proveedor[2]}}" {%endif%}/>
+                                    placeholder="Apellido Paterno" required name="txtApePaterno" {%if proveedor%} value="{{proveedor[3]}}" {%endif%}/>
                             </div>
                         </div>
                     </div>
@@ -69,7 +65,7 @@
                             <div class="my-3" id="txtApeMaternodiv">
                                 <label for="txtApeMaterno" class="labelForm">Apellido Materno</label>
                                 <input id="txtApeMaterno" type="text" class="form-control rounded-left inputForm"
-                                    placeholder="Apellido Materno" required name="txtApeMaterno" {%if Proveedor%} value="{{Proveedor[3]}}" {%endif%}/>
+                                    placeholder="Apellido Materno" required name="txtApeMaterno" {%if proveedor%} value="{{proveedor[4]}}" {%endif%}/>
                             </div>
                         </div>
                         <div class="col-6">
@@ -77,7 +73,7 @@
                             <div class="my-3" id="txtTelefonodiv">
                                 <label for="txtTelefono" class="labelForm">Telefono</label>
                                 <input id="txtTelefono" type="text" class="form-control rounded-left inputForm"
-                                    placeholder="Apellido Paterno" required name="txtTelefono" {%if Proveedor%} value="{{Proveedor[4]}}" {%endif%}/>
+                                    placeholder="Apellido Paterno" required name="txtTelefono" {%if proveedor%} value="{{proveedor[5]}}" {%endif%}/>
                             </div>
                         </div>
                     </div>
@@ -88,14 +84,14 @@
                             <div class="my-3" id="txtproveedordiv">
                                 <label for="txtproveedor" class="labelForm">Nombre de la Empresa</label>
                                 <input id="txtproveedor" type="text" class="form-control rounded-left inputForm"
-                                    placeholder="Nombre de la Empresa" required name="txtproveedor" {%if Proveedor%} value="{{Proveedor[5]}}" {%endif%}/>
+                                    placeholder="Nombre de la Empresa" required name="txtproveedor" {%if proveedor%} value="{{proveedor[6]}}" {%endif%}/>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="my-3" id="txtemaildiv">
                                 <label for="txtemail" class="labelForm">Email</label>
                                 <input id="txtemail" type="email" class="form-control rounded-left inputForm"
-                                    placeholder="Email" required name="txtemail" {%if Proveedor%} value="{{Proveedor[5]}}" {%endif%}/>
+                                    placeholder="Email" required name="txtemail" {%if proveedor%} value="{{proveedor[7]}}" {%endif%}/>
                             </div>
                         </div>
                     </div>
@@ -116,7 +112,7 @@
         </div>
     </form>
 
-    <form id="divTablaProveedores" class="col-12" method="POST" action="/administrador/tlachicuates/Proveedor">
+    <form id="divTablaProveedores" class="col-12" method="POST" action="/administrador/tlachicuates/proveedor">
         <input type="hidden" value="" id="banderaOjo" name="bandera">
         <div class="card shadow" style="background-color: #E3C4A8 ">
 
@@ -203,11 +199,6 @@
 
 <script type="text/javascript" src="../../static/js/Proveedores.js"></script>
 
-{%if Proveedor%} 
-<script>
-$("#selectRol option[value='{{Proveedor[7]}}']").prop("selected", true);
-</script>
-{%endif%}
 <script type="text/javascript">
     inicializarModuloProveedores();
 </script>
