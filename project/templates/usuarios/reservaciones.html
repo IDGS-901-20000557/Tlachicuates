@@ -1,0 +1,182 @@
+{% extends "layout/layout.html" %} {% block content%}
+
+<section style="margin-bottom: 10px;">
+    <div class="wow bounceInUp" data-wow-delay="0.1s">
+        <h1 style="text-align: center;color: white; font-family: mayan;  font-weight: bold; ">
+            Reservaciones</h1>
+        <img src="{{ url_for('static', filename='media/linea.png') }}" alt="" style="display: block;
+             margin-left: auto;
+             margin-right: auto; width: 60px;">
+    </div>
+</section>
+
+<div class="row my-3" style="padding: 0 !important; margin: 0 0 0 0 !important; background-color: #B6A991 ;">
+
+    <form id="divDetalleReservaciones" class="col-5" method="POST" action="/cliente/tlachicuates/reservaciones">
+        <div class="card shadow" style="background-color: #E3C4A8 ">
+            <input type="hidden" value="" id="bandera1" name="bandera1">
+            <div class="card-header" style="background-color: #55a277 !important;">
+                <div class="row">
+                    <div class="col-10" style="display: table;">
+                        <span class="h5" style="color: #E3C4A8; font-family:  'Alegreya Sans SC';  font-weight: bold;  display:table-cell;
+                              vertical-align:middle;">Detalle de Reservacion</span>
+                    </div>
+                    <div class="col-2">
+                        <button class="btn-sm btn-outline-danger float-end" type="button" onclick="setFormularioDetalleVisible(false);"><i class="fas fa-times"></i></button>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="form">
+                    <div class="row">
+                        <div class="col-12">
+                            <label for="txtCodigoR" class="labelForm">Código de Reservacion</label>
+                            <input id="txtCodigoR" type="text" class="form-control rounded-left inputForm" placeholder="Codigo" readonly name="txtCodigoR" {%if reservacion%} value="{{reservacion[0]}}" {%endif%} />
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-6">
+
+                            <div class="my-3" id="txtClientediv">
+                                <label for="txtCliente" class="labelForm">Cliente</label>
+                                <input id="txtCliente" type="text" class="form-control rounded-left inputForm" placeholder="Cliente" required name="txtCliente" {%if reservacion%} value="{{reservacion[1]}}" {%endif%} />
+                            </div>
+                        </div>
+                        <div class="col-6">
+
+                            <div class="my-3" id="txtMesadiv">
+                                <label for="txtMesa" class="labelForm">Mesa</label>
+                                <input id="txtMesa" type="text" class="form-control rounded-left inputForm" placeholder="Mesa" required name="txtMesa" {%if reservacion%} value="{{reservacion[2]}}" {%endif%} />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+
+                            <div class="my-3" id="txtHora">
+                                <label for="txtHora" class="labelForm">Hora</label>
+                                <input id="txtHora" type="datetime-local" class="form-control rounded-left inputForm" placeholder="Hora" required name="txtHora" {%if reservacion%} value="{{reservacion[3]}}" {%endif%} />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="my-4 text-center" id="buttonsAdmin">
+            <button class="btn btn-primary buttonSave" type="submit" onclick="$('#bandera1').val(1); loadingReservaciones();"><i class="fas fa-save " style="color: #f9f9f9"
+                    type="button"></i>&nbsp;&nbsp;Guardar</button>
+            <button class="btn btn-danger mx-3 buttonDelete" type="submit" onclick="$('#bandera1').val(2); loadingReservaciones();"><i class="fas fa-trash "
+                    style="color: #f9f9f9"></i>&nbsp;&nbsp;Eliminar</button>
+            <button class="btn btn-primary" onclick="limpiarFormulario(); " type="button"><i class="fas fa-backspace"
+                    style="color: #f9f9f9"></i>&nbsp;&nbsp;Nuevo</button>
+        </div>
+</div>
+</form>
+
+<form id="divTablaReservaciones" class="col-6" method="POST" action="/cliente/tlachicuates/reservaciones">
+    <input type="hidden" value="" id="banderaOjo" name="bandera">
+    <div class="card shadow" style="background-color: #E3C4A8 ">
+
+        <div class="card-header " style="background-color: #55a277 !important;">
+            <div class="row">
+                <div class="col-4 " style="display:table;">
+                    <span class="h5" style="color: #E3C4A8; font-family:  'Alegreya Sans SC';  font-weight: bold;  display:table-cell;
+                              vertical-align:middle;">Catálogo de Reservaciones</span>
+                </div>
+
+
+                <div class="col-5  " id="buttonAddAdmin">
+                    <button class="btn-sm btn-outline-success float-end mx-4" type="button" onclick="setFormularioDetalleVisible(true);"><i class="fas fa-plus">&nbsp;&nbsp;Agregar
+                            Nuevo</i></button>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="card-body">
+            <table class="table table-hover" id="tablaReservaciones">
+                <thead class="text-center" style="color: #373737;  font-family: 'Alegreya Sans SC';  font-weight: bold;">
+                    <tr>
+                        <th>Reservacion</th>
+                        <th>Cliente</th>
+                        <th>Mesa</th>
+                        <th>Hora</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="tbodyReservaciones" style="color: #373737;  font-family: 'Be Vietnam';" class="text-center">
+                    {%for reservacion in reservaciones %}
+                    <tr>
+                        <td>{{reservacion[0]}}</td>
+                        <td>{{reservacion[1]}}</td>
+                        <td>{{reservacion[2]}}</td>
+                        <td><button><a type="submit" onclick="consultarReservaciones('{{reservacion[3]}}'); loading();"><i
+                                        class="fas fa-eye"></i></a></button> </td>
+                    </tr>
+                    {%endfor%}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</form>
+</div>
+<footer class="text-center text-white" style="background-color: #f1f1f1; padding: 0 !important; margin: 0 !important" ">
+    <!-- Grid container -->
+    <div class=" container pt-4 ">
+
+    <!-- Section: Social media -->
+    <section class=" mb-2 ">
+        <!-- Facebook -->
+        <a class=" btn btn-link btn-floating btn-lg m-1 " href=" #! " role=" button "
+            data-mdb-ripple-color=" dark "><i class=" fab fa-facebook-f "></i></a>
+
+        <!-- Twitter -->
+        <a class=" btn btn-link btn-floating btn-lg m-1 " href=" #! " role=" button "
+            data-mdb-ripple-color=" dark "><i class=" fab fa-twitter "></i></a>
+
+        <!-- Instagram -->
+        <a class=" btn btn-link btn-floating btn-lg m-1 " href=" #! " role=" button "
+            data-mdb-ripple-color=" dark "><i class=" fab fa-instagram "></i></a>
+
+
+    </section>
+    <!-- Section: Social media -->
+    </div>
+
+    <div class=" text-dark mb-2 ">
+        <p>¡Siguenos en nuestras redes para estar al tanto de todas las novedades!</p>
+    </div>
+
+    <!-- Copyright -->
+    <div class=" text-center text-white p-3 " style=" background-color: #373737; color: #f9f9f9; ">
+        © 2023 Copyright: Designed by TLACHICUATES
+    </div>
+    <!-- Copyright -->
+</footer>
+
+<script type=" text/javascript " src=" ../../static/js/reservaciones.js "></script>
+
+<!-- {%if reservaciones%} 
+<script>
+    $(" #selectRol option[value='{{reservaciones[4]}}' ] ").prop(" selected ", true);
+</script>
+{%endif%} -->
+<script type=" text/javascript ">
+    inicializarModuloReservaciones();
+</script>
+<script>
+    //puedes deshabilitar el paginador
+    $(document).ready(function () {
+        $('#tablaReservaciones').DataTable({
+            " columnDefs ": [
+                { " orderable ": false, " targets ": 3 }
+            ]
+        });
+    });
+
+</script>
+{% endblock %}
