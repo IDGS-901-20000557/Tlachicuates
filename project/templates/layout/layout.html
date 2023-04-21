@@ -4,14 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport"
-        content="width=divece-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1">
+    <meta name="viewport" content="width=divece-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1">
     <title>Tlachicuates - Inicio</title>
     <link rel="icon" href="../../static/img/isotipo.png">
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="../../static/bootstrap/css/bootstrap.min.css">
-    <link href="../../static/js/datatable/datatables.min.css" rel="stylesheet"/>
+    <link href="../../static/js/datatable/datatables.min.css" rel="stylesheet" />
 
     <!-- CUSTOM CSS -->
     <link rel="stylesheet" href="../../static/css/styles.css">
@@ -50,19 +49,16 @@
         <h2 class="s">Tlachicuates</h2>
         <ul>
             {% if session.get("rol")==2 or session.get("rol")==1 %}
-            <li><a href="/administrador/tlachicuates/ventas">Venta</a></li> 
-            {% endif %}
-            {% if session.get("rol")==1 %}
+            <li><a href="/administrador/tlachicuates/ventas">Venta</a></li>
+            {% endif %} {% if session.get("rol")==1 %}
             <li><a href="/administrador/tlachicuates/recetas">Recetas</a></li>
             <li><a href="/administrador/tlachicuates/insumos">Insumos</a></li>
-            <li><a href="/administrador//tlachicuates/inventarios">Inventario</a></li> 
-            <li><a href="/administrador/CRUDDiscos">Finanzas</a></li>
+            <li><a href="/administrador//tlachicuates/inventarios">Inventario</a></li>
+            <li><a href="/administrador//tlachicuates/finanzas">Finanzas</a></li>
             <li><a href="/administrador/tlachicuates/usuarios">Usuarios</a></li>
             <li><a href="/administrador/tlachicuates/proveedores">Proveedores</a></li>
-            {% endif %}
-
-            {% if session.get("rol")==3 %}
-            <li><a href="/administrador/CRUDDiscos">Reservaciones</a></li>
+            {% endif %} {% if session.get("rol")==3 %}
+            <li><a href="/cliente/tlachicuates/reservaciones">Reservaciones</a></li>
             <li><a href="/cliente/tlachicuates/compras">Compra</a></li>
             <li><a href="/cliente/tlachicuates/mispedidos">Mis Pedidos</a></li>
             <li><a href="/cliente/tlachicuates/contacto">Contacto</a></li>
@@ -83,26 +79,25 @@
     <script type="text/javascript" src="../../static/js/jquery/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="../../static/sweetalert2/sweetalert2.all.min.js"></script>
     <script type="text/javascript">
-        function loading(){
-            location.href = "#openModal3";  
+        function loading() {
+            location.href = "#openModal3";
         }
-        function noLoading(){
+
+        function noLoading() {
             location.href = "#close3";
         }
-      </script>
-    {%block content %}
-
-    {%endblock%}
+    </script>
+    {%block content %} {%endblock%}
 
     <div id="openModal3" class="modalDialog3">
         <div>
             <div class="container">
                 <div class="CargaContent" id="cookiesPopup">
-                  <img src="../../static/img/logoCircular.png" alt="logo-img" style="width: 250px;
-                  margin-bottom: 20px; padding-top: 20px;"/>
-                  <p style="color: black; font-family: fuenteMaya; font-weight: bold;  font-size: 30px;">Espere...</p>
+                    <img src="../../static/img/logoCircular.png" alt="logo-img" style="width: 250px;
+                  margin-bottom: 20px; padding-top: 20px;" />
+                    <p style="color: black; font-family: fuenteMaya; font-weight: bold;  font-size: 30px;">Espere...</p>
                 </div>
-              </div>
+            </div>
         </div>
     </div>
 
@@ -111,40 +106,32 @@
     <script type="text/javascript" src="../../static/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="../../static/js/generales.js"></script>
     <script type="text/javascript" src="../../static/sweetalert2/sweetalert2.all.min.js"></script>
-    
-    {% with messages = get_flashed_messages(with_categories=True) %}
-            {% if messages %}
-                {% for category, message in messages %}
-                    {% if category == 'error' %}
-                        <script>
-                            Swal.fire({
-                                position: 'center',
-                                icon: 'error',
-                                text: "{{message}}",
-                                showConfirmButton: true,
-                                timer: 5000
-                            })
-                        </script>
-                    {% else %}
-                        <script>
-                            Swal.fire({
-                                position: 'center',
-                                icon: 'success',
-                                text: "{{message}}",
-                                showConfirmButton: true,
-                                timer: 5000
-                            })
-                        </script>
-                    {% endif %}
-                {% endfor %}
-            {% endif %}
-        {% endwith  %}
-        
-        {% if banderaLoading %}
-        <script>
-            noLoading();
-        </script>
-          {% endif %}
+
+    {% with messages = get_flashed_messages(with_categories=True) %} {% if messages %} {% for category, message in messages %} {% if category == 'error' %}
+    <script>
+        Swal.fire({
+            position: 'center',
+            icon: 'error',
+            text: "{{message}}",
+            showConfirmButton: true,
+            timer: 5000
+        })
+    </script>
+    {% else %}
+    <script>
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            text: "{{message}}",
+            showConfirmButton: true,
+            timer: 5000
+        })
+    </script>
+    {% endif %} {% endfor %} {% endif %} {% endwith %} {% if banderaLoading %}
+    <script>
+        noLoading();
+    </script>
+    {% endif %}
 </body>
 
 </html>

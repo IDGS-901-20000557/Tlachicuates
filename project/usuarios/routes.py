@@ -8,6 +8,7 @@ from flask_security.decorators import roles_required
 from flask import session
 from .mainCompras import *
 from .mainMisPedidos import *
+from .mainReservaciones import *
 from flask_login import current_user
 from datetime import datetime
 import random
@@ -63,4 +64,16 @@ def vistaCompras():
 
 #fin compras
 
+#Inicio Reservaciones
+
+@clientes.route("/tlachicuates/reservaciones")
+@login_required
+@roles_required('cliente')
+def vistaReservaciones():
+    resultset=consultarReservaciones()
+    return render_template('/usuarios/reservaciones.html', banderaLoading=True)
+
+
+
+#Fin Reservaciones
 

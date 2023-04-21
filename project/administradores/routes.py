@@ -12,6 +12,11 @@ from flask_security.decorators import login_required
 from flask_security import login_required, current_user
 from flask_security.decorators import roles_required
 from flask import session
+from .mainFinanzas import *
+import random
+from flask import jsonify
+
+
 
 administradores = Blueprint('administradores_auth', __name__)
 
@@ -221,3 +226,34 @@ def vistaVenta():
     venta, productos_venta=consultarVenta(request.form.get('bandera'))
     return render_template('/administradores/ventas.html', ventas=resultset,productos=productos,banderaLoading=True,venta=venta,productos_venta=productos_venta)
 #Fin Ventas
+
+#Inicio Finanzas
+@administradores.route("/tlachicuates/finanzas", methods=["POST", "GET"])
+@login_required
+@roles_required('administrador')
+def vistaFinanzas():
+    # Genera las gráficas y obtiene las imágenes en formato base64
+    graficas_bytes = generar_graficas()
+
+    # Codifica las imágenes en formato base64
+    imagen1 = "data:image/png;base64," + graficas_bytes[0]
+    imagen2 = "data:image/png;base64," + graficas_bytes[1]
+
+    # Renderiza la plantilla HTML y pasa las imágenes como parámetros
+    return render_template('/administradores/finanzas.html', imagen1=imagen1, imagen2=imagen2)
+
+
+""" @administradores.route("/tlachicuates/finanzas", methods=["POST", "GET"])
+@login_required
+@roles_required('administrador')
+def vistaFinanzas():
+    # Genera la gráfica y obtiene la imagen en formato base64
+    grafica_bytes = generar_grafica()
+
+    # Codifica la imagen en formato base64
+    imagen = "data:image/png;base64," + grafica_bytes
+
+    # Renderiza la plantilla HTML y pasa la imagen como parámetro
+    return render_template('/administradores/finanzas.html', imagen=imagen) """
+
+#Fin Finanzas
