@@ -26,7 +26,7 @@ def create_app():
     #Generamos la clave aleatoria de sesión Flask para crear una cookie con la inf. de la sesión
     app.config['SECRET_KEY'] = os.urandom(24)
     #Definimos la ruta a la BD: mysql://user:password@localhost/bd'
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:root@localhost/bdtlachicuates'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://bassrobert:18002424!@127.0.0.1/bdtlachicuates'
     # We're using PBKDF2 with salt. PREGUNTA
     app.config['SECURITY_PASSWORD_HASH'] = 'pbkdf2_sha512'
     #Semilla para el método de encriptado que utiliza flask-security PREGUNTA

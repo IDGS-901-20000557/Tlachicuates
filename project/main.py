@@ -13,8 +13,6 @@ app=Flask(__name__)
 from project.administradores.routes import administradores
 """ 
 
-
-
 from project.usuarios.routes import usuarios """
 
 main = Blueprint('main',__name__)
