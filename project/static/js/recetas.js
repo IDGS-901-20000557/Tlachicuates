@@ -205,7 +205,6 @@ function agregarInputInsumos() {
         total= total+ (costoInsumo*cantidadInsumo);
         cadenaInsumos=cadenaInsumos+"¬"+$('#txtInsumo'+i).val()+"°"+$('#txtCantidad'+i).val();
     }
-    console.log(cadenaInsumos);
     $('#txtCosto').val(total);
     $('#banderaInsumos').val(cadenaInsumos);
     window.location.href = "#close4";
@@ -213,6 +212,5 @@ function agregarInputInsumos() {
 
 
 function cambiarLongitud(longitud){
-    console.log("ADIOOOOOOOS");
     cantidadInsumos=longitud;
 }

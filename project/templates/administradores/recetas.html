@@ -13,7 +13,7 @@
     <form id="divDetalleProducto" class="col-5" method="POST" action="/administrador/tlachicuates/recetas">
         <div class="card shadow" style="background-color: #E3C4A8 ">
             <input type="hidden" value="" id="bandera1" name="bandera1">
-            <input type="hidden" value="" id="banderaInsumos" name="banderaInsumos">
+            <input type="hidden" {%if cadenaReceta%} value="{{cadenaReceta}}" {%endif%} id="banderaInsumos" name="banderaInsumos">
             <div class="card-header" style="background-color: #55a277 !important;">
                 <div class="row">
                     <div class="col-10" style="display: table;">

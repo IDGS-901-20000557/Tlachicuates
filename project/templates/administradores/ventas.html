@@ -1,0 +1,305 @@
+{% extends "layout/layout.html" %}
+{% block content%}
+
+<script type="text/javascript" src="../../static/js/ventas.js"></script>
+<section style="margin-bottom: 10px;">
+    <div class="wow bounceInUp" data-wow-delay="0.1s">
+        <h1 style="text-align: center;color: white; font-family: mayan;  font-weight: bold; ">
+            Ventas</h1>
+    </div>
+</section>
+
+<div style="padding: 0 !important; margin: 0 0 0 0 !important; background-color: #B6A991 ;">
+    <div class="card text-center" style="background-color: #B6A991 ;">
+        <div class="card-body">
+            <h5 class="card-title">Ventas o compras rapidas, reservaciones</h5>
+            <p class="card-text">Elige si deseas vender, compras rapidas o ver las reservaciones</p>
+            <select class="form-control" id="exampleFormControlSelect1">
+                <option selected="selected" value="1">Ventas</option>
+                <option value="2">Compras Rapidas</option>
+                <option value="3">Reservaciones</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="row my-3" style="padding: 0 !important; margin: 0 0 0 0 !important; background-color: #B6A991 ;" id="ventasContenedor">
+    <form id="divDetalleVentas" class="col-5" method="POST" action="/administrador/tlachicuates/ventas">
+        <div class="card shadow" style="background-color: #E3C4A8 ">
+            <input type="hidden" value="" id="bandera1" name="bandera1">
+            <input type="hidden" {%if cadenaInsumos%} value="{{cadenaInsumos}}" {%endif%} id="banderaInsumos"
+                name="banderaInsumos">
+            <div class="card-header" style="background-color: #55a277 !important;">
+                <div class="row">
+                    <div class="col-10" style="display: table;">
+                        <span class="h5" style="color: #E3C4A8; font-family:  'Alegreya Sans SC';  font-weight: bold;  display:table-cell;
+                              vertical-align:middle;">Detalle del Ventas</span>
+                    </div>
+                    <div class="col-2">
+                        <button class="btn-sm btn-outline-danger float-end" type="button"
+                            onclick="setFormularioDetalleVisible(false);"><i class="fas fa-times"></i></button>
+                    </div>
+
+                </div>
+            </div>
+            <select id="txtProducto" name="txtProducto" style="visibility:hidden;">
+                {%if productos%}
+
+                {%for producto in productos %}
+                <option value="{{producto[0]}}" id="lt" name="{{producto[2]}}">
+                    {{producto[1]}}
+                </option>
+                {%endfor%}
+                {%endif%}
+            </select>
+            <div class="card-body">
+                <div class="form">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="col-12">
+                                <label for="txtCodigoV" class="labelForm">Código de la venta</label>
+                                <input id="txtCodigoV" name="txtCodigoV" type="text" {%if venta%} value="{{venta[0]}}"
+                                    {%endif%} class="form-control rounded-left inputForm" placeholder="Codigo"
+                                    readonly />
+                            </div>
+                        </div>
+                        {%if not productos_venta%}
+                        <div class="row">
+                            <div class="col-3">
+                                <label for="txtProducto1" class="labelForm">Producto:</label>
+                                    <div class="box" style="width: 100%; cursor: pointer;">
+                                        <select id="txtProducto1" name="txtProducto1"
+                                            onchange="setParametros('txtProducto1','txtCostoP1')">
+                                        </select>
+                                    </div>
+                            </div>
+                            <script>
+                                /* CHALE */
+                                $('#txtProducto1').html($('#txtProducto').html());
+                            </script>
+                            <div class="col-3">
+                                    <label for="txtCostoP1" class="labelForm">Precio:</label>
+                                    <input id="txtCostoP1" type="text" class="form-control rounded-left inputForm"
+                                        placeholder="Costo" required name="txtCosto1" readonly>
+                            </div>
+                            <div class="col-3">
+                                    <label for="txtUnidadP1" class="labelForm">Unidad:</label>
+                                    <div class="box" style="width: 100%; cursor: pointer;">
+                                    <select id="txtUnidadP1" name="txtUnidadP1">
+                                        
+                                        <option value="1">Un Litro</option>
+                                        <option value="0.5">Medio Litro</option>
+                                        <option value="0.25">250 mililitros</option>
+                                        </select>
+                                    </div>
+                            </div>
+                            <div class="col-3">
+                                <label for="txtCantidadP1" class="labelForm ">Cantidad:</label>
+                                <input id="txtCantidadP1" type="number" class="form-control rounded-left inputForm cantidad"
+                                    placeholder="Cantidad" required name="txtCantidadP1">
+                            </div>
+                            
+                        </div>
+                        {%endif%}
+                        <div id="contenedorProductos">
+                            {%if productos_venta%}
+                            {% for receta in range(productos_venta|length) %}
+                            <div class="row form-group" id="contenedorProducto{{receta+1}}">
+                                <div class="col-4">
+                                    <label for="txtProducto{{receta+1}}" class="labelForm">Producto:</label>
+                                    <input id="txtCostoP{{receta+1}}" type="text"
+                                        class="form-control rounded-left inputForm" placeholder="Producto" required
+                                        value="{{productos_venta[receta][0]}}" name="txtCostoP{{receta+1}}" readonly>
+                                </div>
+                                <div class="col-2">
+                                    <label for="txtCostoP{{receta+1}}" class="labelForm">Costo:</label>
+                                    <input id="txtCostoP{{receta+1}}" type="text"
+                                        class="form-control rounded-left inputForm" placeholder="Costo" required
+                                        value="{{productos_venta[receta][1]}}" name="txtCostoP{{receta+1}}" readonly>
+                                </div>
+                                <div class="col-4">
+                                    <label for="txtUnidadP{{receta+1}}" class="labelForm">Unidad:</label>
+                                    <input id="txtUnidadP{{receta+1}}" type="text"
+                                        class="form-control rounded-left inputForm" placeholder="Unidad" required
+                                        value="{{productos_venta[receta][2]}}" name="txtUnidadP{{receta+1}}" readonly>
+                                </div>
+                                <div class="col-2">
+                                    <label for="txtCantidadP{{receta+1}}" class="labelForm">Cantidad:</label>
+                                    <input id="txtCantidadP{{receta+1}}" type="number"
+                                        class="form-control rounded-left inputForm" placeholder="Cantidad" required
+                                        value="{{productos_venta[receta][3]}}" name="txtCantidadP{{receta+1}}" readonly>
+                                </div>
+
+                            </div>
+                            {% endfor %}
+                            {%endif%}
+
+                        </div>
+                        {%if not productos_venta%}
+                        <div class="form-group row pt-2 my-3">
+                            <div class="col-12">
+                              
+                                <button class="btn btn-primary buttonSave" type="button"
+                                    onclick="crearElementosProductos();"><i class="fas fa-save " style="color: #f9f9f9"
+                                        type="button"></i>&nbsp;&nbsp;Agregar</button>
+                                        
+                                <button class="btn btn-danger mx-3 buttonDelete" type="button"
+                                    onclick="eliminarElementosProductos();"><i class="fas fa-trash "
+                                        style="color: #f9f9f9"></i>&nbsp;&nbsp;Eliminar</button>
+                                      
+                            </div>
+                        </div>
+                        {%endif%}
+
+                        <div class="col-12">
+                            <label for="txtTotal" class="labelForm">Total</label>
+                            <input id="txtTotal" name="txtTotal" type="text" {%if venta%} value="{{venta[1]}}"
+                                {%endif%} class="form-control rounded-left inputForm" placeholder="total"
+                                readonly />
+                        </div>
+
+                        
+                    </div>
+                </div>
+
+
+
+              
+
+               
+
+            </div>
+
+
+         
+            <div class="my-4 text-center" id="buttonsAdmin">
+                {%if not venta%}
+                <button class="btn btn-primary buttonSave" type="submit"
+                    onclick="$('#bandera1').val(1); agregarInputProductos();"><i class="fas fa-save "
+                        style="color: #f9f9f9" type="button"></i>&nbsp;&nbsp;Vender</button>
+                        {%endif%}
+                                        {%if venta%}
+                <button class="btn btn-danger mx-3 buttonDelete" type="submit"
+                    onclick="$('#bandera1').val(2);"><i class="fas fa-trash "
+                        style="color: #f9f9f9"></i>&nbsp;&nbsp;Eliminar</button>
+                        {%endif%}
+                <button class="btn btn-primary" onclick="limpiarFormulario(); " type="button"><i
+                        class="fas fa-backspace" style="color: #f9f9f9"></i>&nbsp;&nbsp;Nuevo</button>
+            </div>
+        </div>
+
+
+    </form>
+
+    <form id="divTablaVentas" class="col-12" method="POST" action="/administrador/tlachicuates/venta">
+        <input type="hidden" value="" id="banderaOjo" name="bandera">
+        <input type="hidden" value="" id="banderaOjo2" name="bandera2">
+        <div class="card shadow" style="background-color: #E3C4A8 ">
+
+            <div class="card-header " style="background-color: #55a277 !important;">
+                <div class="row">
+                    <div class="col-4 " style="display:table;">
+                        <span class="h5" style="color: #E3C4A8; font-family:  'Alegreya Sans SC';  font-weight: bold;  display:table-cell;
+                              vertical-align:middle;">Catálogo de Ventas</span>
+                    </div>
+
+
+                    <div class="col-5  " id="buttonAddAdmin">
+                        <button class="btn-sm btn-outline-success float-end mx-4" type="button"
+                            onclick="setFormularioDetalleVisible(true);"><i class="fas fa-plus">&nbsp;&nbsp;Agregar
+                                Nuevo</i></button>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="card-body">
+                <table class="table table-hover" id="tablaInventarios">
+                    <thead class="text-center"
+                        style="color: #373737;  font-family: 'Alegreya Sans SC';  font-weight: bold;">
+                        <tr>
+                            <th>No Venta</th>
+                            <th>Fecha Venta</th>
+                            <th>Total</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbodyInventarios" style="color: #373737;  font-family: 'Be Vietnam';"
+                        class="text-center">
+                        {%for venta in ventas %}
+                        <tr>
+                            <td>{{venta[0]}}</td>
+                            <td>{{venta[1]}}</td>
+                            <td>{{venta[2]}}</td>
+                            <td><button><a type="submit"
+                                        onclick="mostrarDetalleVenta('{{venta[0]}}'); loading();"><i
+                                            class="fas fa-eye"></i></a></button> </td>
+                        </tr>
+                        {%endfor%}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </form>
+</div>
+</div>
+
+
+
+
+<footer class="text-center text-white" style="background-color: #f1f1f1; padding: 0 !important; margin: 0 !important"">
+    <!-- Grid container -->
+    <div class=" container pt-4">
+
+    <!-- Section: Social media -->
+    <section class="mb-2">
+        <!-- Facebook -->
+        <a class="btn btn-link btn-floating btn-lg m-1" href="#!" role="button" data-mdb-ripple-color="dark"><i
+                class="fab fa-facebook-f"></i></a>
+
+        <!-- Twitter -->
+        <a class="btn btn-link btn-floating btn-lg  m-1" href="#!" role="button" data-mdb-ripple-color="dark"><i
+                class="fab fa-twitter"></i></a>
+
+        <!-- Instagram -->
+        <a class="btn btn-link btn-floating btn-lg m-1" href="#!" role="button" data-mdb-ripple-color="dark"><i
+                class="fab fa-instagram"></i></a>
+
+
+    </section>
+    <!-- Section: Social media -->
+    </div>
+
+    <div class="text-dark mb-2">
+        <p>¡Siguenos en nuestras redes para estar al tanto de todas las novedades!</p>
+    </div>
+
+    <!-- Copyright -->
+    <div class="text-center text-white p-3" style="background-color: #373737; color: #f9f9f9;">
+        © 2023 Copyright: Designed by TLACHICUATES
+    </div>
+    <!-- Copyright -->
+</footer>
+
+<script type="text/javascript">
+    inicializarModuloVentas();
+</script>
+<script>
+    //puedes deshabilitar el paginador
+    $(document).ready(function () {
+        $('#inventarioRealContenedor').hide();
+        $('#tablaInventarios').DataTable({
+            "columnDefs": [
+                { "orderable": false, "targets": 3 }
+            ]
+        });
+        
+       
+        calcularTotales() ;
+
+    });
+
+</script>
+
+
+{% endblock %}
