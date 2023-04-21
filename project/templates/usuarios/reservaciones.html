@@ -12,7 +12,7 @@
 
 <div class="row my-3" style="padding: 0 !important; margin: 0 0 0 0 !important; background-color: #B6A991 ;">
 
-    <form id="divDetalleUsuario" class="col-5" method="POST" action="/cliente/tlachicuates/reservaciones">
+    <form id="divDetalleReservaciones" class="col-5" method="POST" action="/cliente/tlachicuates/reservaciones">
         <div class="card shadow" style="background-color: #E3C4A8 ">
             <input type="hidden" value="" id="bandera1" name="bandera1">
             <div class="card-header" style="background-color: #55a277 !important;">
@@ -77,7 +77,7 @@
 </div>
 </form>
 
-<form id="divTablaUsuarios" class="col-12" method="POST" action="/cliente/tlachicuates/reservaciones">
+<form id="divTablaReservaciones" class="col-12" method="POST" action="/cliente/tlachicuates/reservaciones">
     <input type="hidden" value="" id="banderaOjo" name="bandera">
     <div class="card shadow" style="background-color: #E3C4A8 ">
 
@@ -108,7 +108,7 @@
                         <th></th>
                     </tr>
                 </thead>
-                <tbody id="tbodyUsuarios" style="color: #373737;  font-family: 'Be Vietnam';" class="text-center">
+                <tbody id="tbodyReservaciones" style="color: #373737;  font-family: 'Be Vietnam';" class="text-center">
                     {%for reservacion in reservaciones %}
                     <tr>
                         <td>{{reservacion[0]}}</td>
@@ -160,11 +160,11 @@
 
 <script type=" text/javascript " src=" ../../static/js/reservaciones.js "></script>
 
-{%if reservaciones%} 
+<!-- {%if reservaciones%} 
 <script>
     $(" #selectRol option[value='{{reservaciones[4]}}' ] ").prop(" selected ", true);
 </script>
-{%endif%}
+{%endif%} -->
 <script type=" text/javascript ">
     inicializarModuloReservaciones();
 </script>

@@ -28,5 +28,5 @@ def vistaContacto():
 @roles_required('cliente')
 def vistaReservaciones():
     resultset=consultarReservaciones()
-    return render_template('/clientes/reservaciones.html', banderaLoading=True)
+    return render_template('/usuarios/reservaciones.html', banderaLoading=True)
 #Fin Reservaciones
