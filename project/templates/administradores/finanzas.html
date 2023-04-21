@@ -1,0 +1,98 @@
+{% extends "layout/layout.html" %} {% block content%}
+
+<section style="margin-bottom: 10px;">
+    <div class="wow bounceInUp" data-wow-delay="0.1s">
+        <h1 style="text-align: center;color: white; font-family: mayan;  font-weight: bold; ">
+            Finanzas</h1>
+    </div>
+</section>
+
+<div class="row my-3" style="padding: 100 !important; margin: 0 0 0 0 !important; background-color: #B6A991 ;">
+
+    <form id="divDetalleUsuario" class="col-5" method="POST" action="/administrador/tlachicuates/usuarios">
+        <div class="card shadow" style="background-color: #E3C4A8 ">
+            <input type="hidden" value="" id="bandera1" name="bandera1">
+            <div class="card-header" style="background-color: #55a277 !important;">
+                <div class="row">
+                    <div class="col-10" style="display: table;">
+                        <span class="h5" style="color: #E3C4A8; font-family:  'Alegreya Sans SC';  font-weight: bold;  display:table-cell;
+                              vertical-align:middle;">Ganancias de semestrales:</span>
+                    </div>
+                    <img src="{{ imagen1 }}" alt="Gráfica 1">
+                </div>
+            </div>
+        </div>
+    </form>
+    <form id="divDetalleUsuario" class="col-5" method="POST" action="/administrador/tlachicuates/usuarios">
+        <div class="card shadow" style="background-color: #E3C4A8 ">
+            <input type="hidden" value="" id="bandera1" name="bandera1">
+            <div class="card-header" style="background-color: #55a277 !important;">
+                <div class="row">
+                    <div class="col-10" style="display: table;">
+                        <span class="h5" style="color: #E3C4A8; font-family:  'Alegreya Sans SC';  font-weight: bold;  display:table-cell;
+                              vertical-align:middle;">Los 5 pulques más vendidos:</span>
+                    </div>
+                    <img src="{{ imagen2 }}" alt="Gráfica 2">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<footer class="text-center text-white" style="background-color: #f1f1f1; padding: 0 !important; margin: 0 !important" ">
+    <!-- Grid container -->
+    <div class=" container pt-4 ">
+
+    <!-- Section: Social media -->
+    <section class=" mb-2 ">
+        <!-- Facebook -->
+        <a class=" btn btn-link btn-floating btn-lg m-1 " href=" #! " role=" button " data-mdb-ripple-color=" dark "><i
+                class=" fab fa-facebook-f "></i></a>
+
+        <!-- Twitter -->
+        <a class=" btn btn-link btn-floating btn-lg m-1 " href=" #! " role=" button " data-mdb-ripple-color=" dark "><i
+                class=" fab fa-twitter "></i></a>
+
+        <!-- Instagram -->
+        <a class=" btn btn-link btn-floating btn-lg m-1 " href=" #! " role=" button " data-mdb-ripple-color=" dark "><i
+                class=" fab fa-instagram "></i></a>
+
+
+    </section>
+    <!-- Section: Social media -->
+    </div>
+
+    <div class=" text-dark mb-2 ">
+        <p>¡Siguenos en nuestras redes para estar al tanto de todas las novedades!</p>
+    </div>
+
+    <!-- Copyright -->
+    <div class=" text-center text-white p-3 " style=" background-color: #373737; color: #f9f9f9; ">
+        © 2023 Copyright: Designed by TLACHICUATES
+    </div>
+    <!-- Copyright -->
+</footer>
+
+<script type=" text/javascript " src=" ../../static/js/usuarios.js "></script>
+
+{%if usuario%}
+<script>
+    $(" #selectRol option[value='{{usuario[7]}}' ] ").prop(" selected ", true);
+</script>
+{%endif%}
+<script type=" text/javascript ">
+    inicializarModuloUsuarios();
+</script>
+<script>
+    //puedes deshabilitar el paginador
+    $(document).ready(function () {
+        $('#tablaUsuarios').DataTable({
+            " columnDefs ": [
+                { " orderable ": false, " targets ": 3 }
+            ]
+        });
+    });
+
+</script>
+{% endblock %}

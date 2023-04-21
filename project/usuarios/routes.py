@@ -73,5 +73,7 @@ def vistaReservaciones():
     resultset=consultarReservaciones()
     return render_template('/usuarios/reservaciones.html', banderaLoading=True)
 
+
+
 #Fin Reservaciones
 
