@@ -1,13 +1,9 @@
-from flask import redirect, render_template, Blueprint
-from flask import request
-from flask import url_for
-#from .mainUsuarios import modificarInsertarUsuario, consultarUsuarios, consultarUsuario, eliminarUsuario
-from .mainReservaciones import consultarReservaciones, modificarInsertarReservacion, eliminarReservacion
-from flask import Blueprint, render_template
-from flask_security.decorators import login_required
-from flask_security import login_required, current_user
-from flask_security.decorators import roles_required
+from flask import Blueprint, redirect, render_template, request, url_for
+from flask_security.decorators import login_required, roles_required
 from flask import session
+
+from .mainReservaciones import consultarReservaciones
+
 
 clientes = Blueprint('clientes_auth', __name__)
 

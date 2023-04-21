@@ -11,12 +11,15 @@ db = SQLAlchemy()
 
 app=Flask(__name__)
 from project.administradores.routes import administradores
+from project.usuarios.routes import clientes
 """ 
 
 from project.usuarios.routes import usuarios """
 
 main = Blueprint('main',__name__)
 main.register_blueprint(administradores, url_prefix='/administrador')
+main.register_blueprint(clientes, url_prefix='/cliente')
+
 """ 
 main.register_blueprint(usuarios, url_prefix='/usuario')
  """
