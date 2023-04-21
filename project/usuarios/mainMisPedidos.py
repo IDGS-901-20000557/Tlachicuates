@@ -65,3 +65,37 @@ def insert_pedido_producto(cantidad, unidad, id_producto, id_pedido):
     return success
 
 
+def obtenerProductosPorPedido(idPedido):
+    try:
+        connection = get_connection()
+        with connection.cursor() as cursor:
+            # Obtenemos los productos y cantidades del pedido
+            cursor.execute('SELECT p.idproductos, p.nombreProducto, p.precioVenta, d.cantidad, d.unidad, pe.fechaPedido, pe.idPedidos \
+                            FROM pedido_producto d \
+                            INNER JOIN producto p ON d.idProducto = p.idproductos \
+                            INNER JOIN pedido pe ON d.idPedidos = pe.idPedidos \
+                            WHERE pe.idPedidos = %s', idPedido)
+
+            resultset = cursor.fetchall()
+
+        connection.close()
+
+        # Convertir la lista de tuplas a una lista de diccionarios
+        productos = []
+        for p in resultset:
+            productos.append({
+                'idProducto': p[0],
+                'nombreProducto': p[1],
+                'precioProducto': p[2],
+                'cantidad': p[3],
+                'unidad': p[4],
+                'fechaPedido': p[5],
+                'idPedido': p[6]
+            })
+
+        return productos
+
+    except Exception as ex:
+       print('Error obteniendo productos del pedido:', ex)
+       return None
+
