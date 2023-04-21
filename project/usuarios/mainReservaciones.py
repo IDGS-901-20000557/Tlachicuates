@@ -10,7 +10,7 @@ def consultarReservaciones():
     try:
         connection = get_connection()
         with connection.cursor() as curso:
-            curso.execute('call SP_mostrar_reservaciones()')
+            curso.execute('call SP_mostrar_reservaciones();')
             resultset = curso.fetchall()
         connection.close()
         return resultset

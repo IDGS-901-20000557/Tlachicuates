@@ -12,13 +12,11 @@ from flask import session
 clientes = Blueprint('clientes_auth', __name__)
 
 #Inicio de contacto
-
 @clientes.route("/tlachicuates/contacto")
 @login_required
 @roles_required('cliente')
 def vistaContacto():
     return render_template('/generales/contacto.html', banderaLoading=True)
-
 #Fin de Contacto
 
 #Inicio Reservaciones
@@ -29,4 +27,5 @@ def vistaContacto():
 def vistaReservaciones():
     resultset=consultarReservaciones()
     return render_template('/usuarios/reservaciones.html', banderaLoading=True)
+
 #Fin Reservaciones

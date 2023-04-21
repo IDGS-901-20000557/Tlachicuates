@@ -1,20 +1,22 @@
-{% extends "inicio/layout.html" %}
-{% block content%}
+{% extends "layout/layout.html" %} {% block content%}
 <div class="container">
     <!-- Navigation titulo.html-->
-    <p class="titulo wow pulse infinite slow 5s">No critiques</p>
-    <p class="titulo wow pulse infinite slow 5s">Lo que no puedes entender</p>
-    <hr>
+    <section style="margin-bottom: 10px;">
+        <div class="wow bounceInUp" data-wow-delay="0.1s">
+            <h1 style="text-align: center;color: white; font-family: mayan;  font-weight: bold; ">
+                Contacto</h1>
+        </div>
+    </section>
+
 
     <!-- Form -->
     <form class="formContacto">
-		<h2>CONTACTO</h2>
-		<input type="text" name="Nombre" placeholder="Nombre">
-		<input type="text" name="Correo" placeholder="Correo">
-		<input type="text" name="Telefono" placeholder="Teléfono">
-		<textarea name="mensaje" placeholder="Escriba aqui su mensaje"></textarea>
-		<input type="button" value="Enviar" id="boton">
-	</form>
+        <input type="text" name="Nombre" placeholder="Nombre">
+        <input type="text" name="Correo" placeholder="Correo">
+        <input type="text" name="Telefono" placeholder="Teléfono">
+        <textarea name="mensaje" placeholder="Escriba aqui su mensaje"></textarea>
+        <input type="button" value="Enviar" id="boton">
+    </form>
 
     <!-- Footer -->
 
