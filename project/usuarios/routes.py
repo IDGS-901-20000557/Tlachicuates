@@ -11,36 +11,22 @@ from flask import session
 
 clientes = Blueprint('clientes_auth', __name__)
 
-#Inicio usuarios
+#Inicio de contacto
+
+@clientes.route("/tlachicuates/contacto")
+@login_required
+@roles_required('cliente')
+def vistaContacto():
+    return render_template('/generales/contacto.html', banderaLoading=True)
+
+#Fin de Contacto
+
+#Inicio Reservaciones
+
 @clientes.route("/tlachicuates/reservaciones")
 @login_required
 @roles_required('cliente')
 def vistaReservaciones():
     resultset=consultarReservaciones()
     return render_template('/clientes/reservaciones.html', banderaLoading=True)
-
-
-
-
-
-""" @clientes.route("/tlachicuates/reservaciones", methods=["POST"])
-@login_required
-@roles_required('cliente')
-def CUDvistaReservaciones():
-    idUsuario = session.get("idUsuario")
-    if int(request.form.get('bandera1'))==1:
-        modificarInsertarReservacion(
-            int(request.form.get('txtIdReservacion')),
-            idUsuario,
-            int(request.form.get('selectMesa')),
-            int(request.form.get('selectHorario')),
-            )
-    elif int(request.form.get('bandera1'))==2:
-        eliminarReservacion(
-            int(request.form.get('txtIdReservacion')),
-            idUsuario,
-            )
-           
-    return redirect(url_for('main.clientes_auth.vistaReservaciones'))  """
-
-#Fin usuarios
+#Fin Reservaciones
