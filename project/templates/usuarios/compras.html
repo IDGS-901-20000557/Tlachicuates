@@ -1,0 +1,120 @@
+{% extends "layout/layout.html" %}
+{% block content%}
+
+<div class="container">
+  <!-- Navigation titulo.html-->
+  <section style="margin-bottom: 10px;">
+      <div class="wow bounceInUp" data-wow-delay="0.1s">
+          <h1 style="text-align: center;color: white; font-family: mayan;  font-weight: bold; ">
+              Compras</h1>
+      </div>
+  </section>
+  
+
+  <!-- Contenido de compras -->
+  <section class="contenedor">
+    <!-- Contenedor de elementos -->
+    <div class="contenedor-items">
+
+          
+        <!-- Valores desde la tabla productos-->
+          {% for producto in productos %}
+          <div class="item">
+              <span class="id-item" style="display: none">{{ producto['idProducto'] }}</span>
+              <span class="titulo-item">{{ producto['nombreProducto'] }}</span>
+              <img src="{{ producto['foto'] }}" alt="" class="img-item">
+              <span class="precio-item" data-precio="{{ producto['precioVenta'] }}"></span>
+              <div class="select-container">
+                  <select class="cantidad-pulque">
+                      <option value="0" selected disabled>Tamaño</option>
+                      <option value="1">250 ml</option>
+                      <option value="2">500 ml</option>
+                      <option value="4">1 L</option>
+                  </select>
+              </div>
+              <button class="boton-item">Agregar al Carrito</button>
+          </div>
+          {% endfor %}
+
+
+          
+    </div>
+    <!-- Carrito de Compras -->
+    <div class="carrito" id="carrito">
+        <div class="header-carrito">
+            <h2>Tu Carrito</h2>
+        </div>
+
+        <div class="carrito-items">
+            <!-- 
+            <div class="carrito-item">
+                <img src="img/boxengasse.png" width="80px" alt="">
+                <div class="carrito-item-detalles">
+                    <span class="carrito-item-titulo">Box Engasse</span>
+                    <div class="selector-cantidad">
+                        <i class="fa-solid fa-minus restar-cantidad"></i>
+                        <input type="text" value="1" class="carrito-item-cantidad" disabled>
+                        <i class="fa-solid fa-plus sumar-cantidad"></i>
+                    </div>
+                    <span class="carrito-item-precio">$15.000,00</span>
+                </div>
+               <span class="btn-eliminar">
+                    <i class="fa-solid fa-trash"></i>
+               </span>
+            </div>
+            <div class="carrito-item">
+                <img src="img/skinglam.png" width="80px" alt="">
+                <div class="carrito-item-detalles">
+                    <span class="carrito-item-titulo">Skin Glam</span>
+                    <div class="selector-cantidad">
+                        <i class="fa-solid fa-minus restar-cantidad"></i>
+                        <input type="text" value="3" class="carrito-item-cantidad" disabled>
+                        <i class="fa-solid fa-plus sumar-cantidad"></i>
+                    </div>
+                    <span class="carrito-item-precio">$18.000,00</span>
+                </div>
+               <button class="btn-eliminar">
+                    <i class="fa-solid fa-trash"></i>
+               </button>
+            </div>
+             -->
+        </div>
+        <div class="carrito-total">
+            <div class="fila">
+                <strong>Tu Total</strong>
+                <span class="carrito-precio-total">
+                    $120.000,00
+                </span>
+            </div>
+            
+
+              <button type="submit" class="btn-pagar">Pagar <i class="fa-solid fa-bag-shopping"></i></button>
+            
+            
+        </div>
+    </div>
+</section>
+
+  
+
+  <!-- Footer -->
+
+  <section class="social">
+      <p>Follow me</p>
+      <div class="links">
+          <a href="https://facebook.com">
+              <i class="fab fa-facebook-f iconos"></i>
+          </a>
+          <a href="https://twitter.com/Ramick616?s=09">
+              <i class="fab fa-twitter iconos"></i>
+          </a>
+          <a href="https://linkdin.com">
+              <i class="fab fa-linkedin iconos"></i>
+          </a>
+      </div>
+  </section>
+
+</div>
+
+
+{% endblock %}

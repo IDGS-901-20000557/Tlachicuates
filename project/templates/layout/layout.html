@@ -16,6 +16,7 @@
     <!-- CUSTOM CSS -->
     <link rel="stylesheet" href="../../static/css/styles.css">
     <link rel="stylesheet" href="../../static/css/estilos-propios.css">
+    <link rel="stylesheet" href="../../static/css/estilos-compras.css">
 
     <!-- Faltantes -->
     <link rel="stylesheet" href="../../static/css/nivo-slider.css">
@@ -30,6 +31,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
 
     <!-- JS Animations -->
+    <script src="../../static/js/compras.js" async></script>
     <script src="../../static/js/wow.min.js" type="text/javascript"></script>
     <script>
         new WOW().init();
@@ -61,7 +63,8 @@
 
             {% if session.get("rol")==3 %}
             <li><a href="/administrador/CRUDDiscos">Reservaciones</a></li>
-            <li><a href="/administrador/CRUDDiscos">Compra</a></li>
+            <li><a href="/cliente/tlachicuates/compras">Compra</a></li>
+            <li><a href="/cliente/tlachicuates/mispedidos">Mis Pedidos</a></li>
             <li><a href="/cliente/tlachicuates/contacto">Contacto</a></li>
             {% endif %}
             <li><a href="/logout">Salir</a></li>
