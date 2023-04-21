@@ -17,9 +17,13 @@ clientes = Blueprint('clientes_auth', __name__)
 @roles_required('cliente')
 def vistaReservaciones():
     resultset=consultarReservaciones()
-    return render_template('/clientes/reservaciones.html', reservacion=resultset, banderaLoading=True)
+    return render_template('/clientes/reservaciones.html', banderaLoading=True)
 
-@clientes.route("/tlachicuates/reservaciones", methods=["POST"])
+
+
+
+
+""" @clientes.route("/tlachicuates/reservaciones", methods=["POST"])
 @login_required
 @roles_required('cliente')
 def CUDvistaReservaciones():
@@ -37,6 +41,6 @@ def CUDvistaReservaciones():
             idUsuario,
             )
            
-    return redirect(url_for('main.clientes_auth.vistaReservaciones')) 
+    return redirect(url_for('main.clientes_auth.vistaReservaciones'))  """
 
 #Fin usuarios

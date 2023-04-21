@@ -1,4 +1,12 @@
 DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_mostrar_reservaciones`()
+BEGIN
+    SELECT *
+    FROM reservacion;
+END ;;
+DELIMITER ;
+
+DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_mostrar_reservacion`(
     IN idReservacion INT
 )

@@ -31,8 +31,8 @@
                 <div class="form">
                     <div class="row">
                         <div class="col-12">
-                            <label for="txtCodigoU" class="labelForm">Código de Reservacion</label>
-                            <input id="txtCodigoU" type="text" class="form-control rounded-left inputForm" placeholder="Codigo" readonly name="txtCodigoU" {%if reservacion%} value="{{reservacion[0]}}" {%endif%} />
+                            <label for="txtCodigoR" class="labelForm">Código de Reservacion</label>
+                            <input id="txtCodigoR" type="text" class="form-control rounded-left inputForm" placeholder="Codigo" readonly name="txtCodigoR" {%if reservacion%} value="{{reservacion[0]}}" {%endif%} />
                         </div>
                     </div>
                     <div class="row">
@@ -67,9 +67,9 @@
         </div>
 
         <div class="my-4 text-center" id="buttonsAdmin">
-            <button class="btn btn-primary buttonSave" type="submit" onclick="$('#bandera1').val(1); loadingUsuarios();"><i class="fas fa-save " style="color: #f9f9f9"
+            <button class="btn btn-primary buttonSave" type="submit" onclick="$('#bandera1').val(1); loadingReservaciones();"><i class="fas fa-save " style="color: #f9f9f9"
                     type="button"></i>&nbsp;&nbsp;Guardar</button>
-            <button class="btn btn-danger mx-3 buttonDelete" type="submit" onclick="$('#bandera1').val(2); loadingUsuarios();"><i class="fas fa-trash "
+            <button class="btn btn-danger mx-3 buttonDelete" type="submit" onclick="$('#bandera1').val(2); loadingReservaciones();"><i class="fas fa-trash "
                     style="color: #f9f9f9"></i>&nbsp;&nbsp;Eliminar</button>
             <button class="btn btn-primary" onclick="limpiarFormulario(); " type="button"><i class="fas fa-backspace"
                     style="color: #f9f9f9"></i>&nbsp;&nbsp;Nuevo</button>
@@ -98,7 +98,7 @@
         </div>
 
         <div class="card-body">
-            <table class="table table-hover" id="tablaUsuarios">
+            <table class="table table-hover" id="tablaReservaciones">
                 <thead class="text-center" style="color: #373737;  font-family: 'Alegreya Sans SC';  font-weight: bold;">
                     <tr>
                         <th>Reservacion</th>
@@ -158,20 +158,20 @@
     <!-- Copyright -->
 </footer>
 
-<script type=" text/javascript " src=" ../../static/js/usuarios.js "></script>
+<script type=" text/javascript " src=" ../../static/js/reservaciones.js "></script>
 
-{%if usuario%} 
+{%if reservaciones%} 
 <script>
-    $(" #selectRol option[value='{{usuario[7]}}' ] ").prop(" selected ", true);
+    $(" #selectRol option[value='{{reservaciones[4]}}' ] ").prop(" selected ", true);
 </script>
 {%endif%}
 <script type=" text/javascript ">
-    inicializarModuloUsuarios();
+    inicializarModuloReservaciones();
 </script>
 <script>
     //puedes deshabilitar el paginador
     $(document).ready(function () {
-        $('#tablaUsuarios').DataTable({
+        $('#tablaReservaciones').DataTable({
             " columnDefs ": [
                 { " orderable ": false, " targets ": 3 }
             ]
