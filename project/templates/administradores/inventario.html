@@ -1,0 +1,671 @@
+{% extends "layout/layout.html" %}
+{% block content%}
+
+<script type="text/javascript" src="../../static/js/inventario.js"></script>
+<section style="margin-bottom: 10px;">
+    <div class="wow bounceInUp" data-wow-delay="0.1s">
+        <h1 style="text-align: center;color: white; font-family: mayan;  font-weight: bold; ">
+            Inventarios</h1>
+    </div>
+</section>
+
+<div style="padding: 0 !important; margin: 0 0 0 0 !important; background-color: #B6A991 ;">
+    <div class="card text-center" style="background-color: #B6A991 ;">
+        <div class="card-body">
+            <h5 class="card-title">Inventario o Lote</h5>
+            <p class="card-text">Elige si deseas generar un Lote o ver el inventario </p>
+            <select class="form-control" id="exampleFormControlSelect1" onchange="selectUniversidad()">
+                <option selected="selected" value="1">Lotes</option>
+                <option value="2">Inventario</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="row my-3" style="padding: 0 !important; margin: 0 0 0 0 !important; background-color: #B6A991 ;" id="inventarioLoteContenedor">
+    <form id="divDetalleInventario" class="col-5" method="POST" action="/administrador/tlachicuates/inventarios">
+        <div class="card shadow" style="background-color: #E3C4A8 ">
+            <input type="hidden" value="" id="bandera1" name="bandera1">
+            <input type="hidden" {%if cadenaInsumos%} value="{{cadenaInsumos}}" {%endif%} id="banderaInsumos"
+                name="banderaInsumos">
+            <div class="card-header" style="background-color: #55a277 !important;">
+                <div class="row">
+                    <div class="col-10" style="display: table;">
+                        <span class="h5" style="color: #E3C4A8; font-family:  'Alegreya Sans SC';  font-weight: bold;  display:table-cell;
+                              vertical-align:middle;">Detalle del Lote</span>
+                    </div>
+                    <div class="col-2">
+                        <button class="btn-sm btn-outline-danger float-end" type="button"
+                            onclick="setFormularioDetalleVisible(false);"><i class="fas fa-times"></i></button>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="form">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="col-12">
+                                <label for="txtCodigoI" class="labelForm">Código del Inventario</label>
+                                <input id="txtCodigoI" name="txtCodigoI" type="text" {%if lote%} value="{{lote[0]}}"
+                                    {%endif%} class="form-control rounded-left inputForm" placeholder="Codigo"
+                                    readonly />
+                            </div>
+                            <div class="row">
+                                <div class="col-6 my-3">
+                                    <input type="hidden" value="1" id="banderaInventario" name="tipoInventario">
+
+                                    <div>
+                                        <input type="radio" id="producto" name="tipoInventario2" value="1" checked
+                                            id="buttonRadioProducto" {%if lote%}disabled{%endif%}>
+                                        <label for="producto">Producto</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" id="insumo" name="tipoInventario2" value="2"
+                                            id="buttonRadioInsumo" {%if lote%}disabled {% endif%}>
+                                        <label for="insumo">Insumo</label>
+                                    </div>
+
+                                    <script>
+                                        $("input[name=tipoInventario2]").change(function () {
+                                            $('#banderaInventario').val($('input[name="tipoInventario2"]:checked').val());
+                                        });
+                                    </script>
+
+                                   
+                                </div>
+                                <div class="col-6">
+                                    <div class="my-3">
+                                        <label for="txtNoLote" class="labelForm">Numero de Lote</label>
+                                        <input id="txtNoLote" type="text" required readonly
+                                            class="form-control rounded-left inputForm" placeholder="Numero de Lote"
+                                            name="txtNoLote" {%if lote%} value="{{lote[1]}}" {%endif%} />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="my-3">
+                            <label for="txtCosto" class="labelForm">Costo del Lote</label>
+                            <input id="txtCosto" type="number" required class="form-control rounded-left inputForm"
+                                placeholder="Costo" name="txtCosto" {%if lote%} value="{{lote[3]}}" {%endif%} />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="my-3">
+                            <label for="txtObservaciones" class="labelForm">Observaciones</label>
+                            <textarea id="txtObservaciones" class="form-control rounded-left "
+                                style="background: transparent; border: none;  border: 1px solid #478174;height: 80px; margin-top: 7px;font-family: 'Be Vietnam';color: #373737;"
+                                placeholder="Escriba aquí las observaciones" required
+                                name="txtObservaciones">{%if lote%}{{lote[2]}} {%endif%}</textarea>
+                        </div>
+                    </div>
+                </div>
+
+                {%if lote%}
+                <div class="row" id="caducidadLoteDiv">
+                    <div class="col-12">
+                        <div class="my-3">
+                            <label for="txtCaducidad" class="labelForm">Fecha caducidad del Lote</label>
+                            <input id="txtCaducidad" type="date" class="form-control rounded-left "
+                                name="txtCaducidad" />
+                        </div>
+                    </div>
+                </div>
+                {%endif%}
+
+                <div class="row" id="buttonInsumo">
+                    <div class="col-12">
+                        <div class="my-3" id="txtPreciodiv">
+                            <button type="button" class="form-control btn btn-success text-white shadow"
+                                style="background-color: #55a277; color: #f9f9f9;   font-family: 'Be Vietnam';"
+                                onclick="location.href = '#openModal4';">
+                                Agregar Insumos
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" id="buttonProducto">
+                    <div class="col-12">
+                        <div class="my-3" id="txtPreciodiv">
+                            <button type="button" class="form-control btn btn-success text-white shadow"
+                                style="background-color: #55a277; color: #f9f9f9;   font-family: 'Be Vietnam';"
+                                onclick="location.href = '#openModal5';">
+                                Agregar Productos
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                {%if lote%}
+                <div class="row" id="buttonEntregado">
+                    <div class="col-12">
+                        <div class="my-3" id="txtEntregadodiv">
+                            <button type="submit" class="form-control btn btn-success text-white shadow"
+                                style="background-color: #55a277; color: #f9f9f9;   font-family: 'Be Vietnam';"
+                                onclick="$('#bandera1').val(3); loadingInventarios();">
+                                Entregado
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                {%endif%}
+            </div>
+
+
+
+            <div class="my-4 text-center" id="buttonsAdmin">
+                <button class="btn btn-primary buttonSave" type="submit"
+                    onclick="$('#bandera1').val(1); loadingInventarios();"><i class="fas fa-save "
+                        style="color: #f9f9f9" type="button"></i>&nbsp;&nbsp;Guardar</button>
+                <button class="btn btn-danger mx-3 buttonDelete" type="submit"
+                    onclick="$('#bandera1').val(2); loadingInventarios();"><i class="fas fa-trash "
+                        style="color: #f9f9f9"></i>&nbsp;&nbsp;Eliminar</button>
+                <button class="btn btn-primary" onclick="limpiarFormulario(); " type="button"><i
+                        class="fas fa-backspace" style="color: #f9f9f9"></i>&nbsp;&nbsp;Nuevo</button>
+            </div>
+        </div>
+
+
+    </form>
+
+    <form id="divTablaInventarios" class="col-12" method="POST" action="/administrador/tlachicuates/inventario">
+        <input type="hidden" value="" id="banderaOjo" name="bandera">
+        <input type="hidden" value="" id="banderaOjo2" name="bandera2">
+        <div class="card shadow" style="background-color: #E3C4A8 ">
+
+            <div class="card-header " style="background-color: #55a277 !important;">
+                <div class="row">
+                    <div class="col-4 " style="display:table;">
+                        <span class="h5" style="color: #E3C4A8; font-family:  'Alegreya Sans SC';  font-weight: bold;  display:table-cell;
+                              vertical-align:middle;">Catálogo de Lotes</span>
+                    </div>
+
+
+                    <div class="col-5  " id="buttonAddAdmin">
+                        <button class="btn-sm btn-outline-success float-end mx-4" type="button"
+                            onclick="setFormularioDetalleVisible(true);"><i class="fas fa-plus">&nbsp;&nbsp;Agregar
+                                Nuevo</i></button>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="card-body">
+                <table class="table table-hover" id="tablaInventarios">
+                    <thead class="text-center"
+                        style="color: #373737;  font-family: 'Alegreya Sans SC';  font-weight: bold;">
+                        <tr>
+                            <th>No Lote</th>
+                            <th>Fecha creación</th>
+                            <th>Costo</th>
+                            <th>Tipo</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbodyInventarios" style="color: #373737;  font-family: 'Be Vietnam';"
+                        class="text-center">
+                        {%for Inventario in Inventarios %}
+                        <tr>
+                            <td>{{Inventario[1]}}</td>
+                            <td>{{Inventario[2]}}</td>
+                            <td>{{Inventario[3]}}</td>
+                            <td>{{Inventario[4]}}</td>
+                            <td><button><a type="submit"
+                                        onclick="mostrarDetalleInventario('{{Inventario[0]}}','{{Inventario[4]}}'); loading();"><i
+                                            class="fas fa-eye"></i></a></button> </td>
+                        </tr>
+                        {%endfor%}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </form>
+</div>
+</div>
+
+
+
+<div class="row my-3" style="padding: 0 !important; margin: 0 0 0 0 !important; background-color: #B6A991 ;" id="inventarioRealContenedor"> 
+    <div id="" class="col-12">
+        <div class="card shadow" style="background-color: #E3C4A8 ">
+            <div class="card-header " style="background-color: #55a277 !important;">
+                <div class="row">
+                    <div class="col-4 " style="display:table;">
+                        <span class="h5" style="color: #E3C4A8; font-family:  'Alegreya Sans SC';  font-weight: bold;  display:table-cell;
+                              vertical-align:middle;">Inventario</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <table class="table table-hover" id="tablaInventariosReal">
+                    <thead class="text-center"
+                        style="color: #373737;  font-family: 'Alegreya Sans SC';  font-weight: bold;">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Stock</th>
+                            <th>Costo</th>
+                            <th>Unidad</th>
+                            <th>Tipo</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbodyInventariosReal" style="color: #373737;  font-family: 'Be Vietnam';"
+                        class="text-center">
+                        {%for Inventario in inventarioProductos %}
+                        <tr>
+                            <td>{{Inventario[0]}}</td>
+                            <td>{{Inventario[1]}}</td>
+                            <td>{{Inventario[2]}}</td>
+                            <td>{{Inventario[3]}}</td>
+                            <td>{{Inventario[4]}}</td>
+                        </tr>
+                        {%endfor%}
+                        {%for Inventario in inventarioInsumos %}
+                        <tr>
+                            <td>{{Inventario[0]}}</td>
+                            <td>{{Inventario[1]}}</td>
+                            <td>{{Inventario[2]}}</td>
+                            <td>{{Inventario[3]}}</td>
+                            <td>{{Inventario[4]}}</td>
+                        </tr>
+                        {%endfor%}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<footer class="text-center text-white" style="background-color: #f1f1f1; padding: 0 !important; margin: 0 !important"">
+    <!-- Grid container -->
+    <div class=" container pt-4">
+
+    <!-- Section: Social media -->
+    <section class="mb-2">
+        <!-- Facebook -->
+        <a class="btn btn-link btn-floating btn-lg m-1" href="#!" role="button" data-mdb-ripple-color="dark"><i
+                class="fab fa-facebook-f"></i></a>
+
+        <!-- Twitter -->
+        <a class="btn btn-link btn-floating btn-lg  m-1" href="#!" role="button" data-mdb-ripple-color="dark"><i
+                class="fab fa-twitter"></i></a>
+
+        <!-- Instagram -->
+        <a class="btn btn-link btn-floating btn-lg m-1" href="#!" role="button" data-mdb-ripple-color="dark"><i
+                class="fab fa-instagram"></i></a>
+
+
+    </section>
+    <!-- Section: Social media -->
+    </div>
+
+    <div class="text-dark mb-2">
+        <p>¡Siguenos en nuestras redes para estar al tanto de todas las novedades!</p>
+    </div>
+
+    <!-- Copyright -->
+    <div class="text-center text-white p-3" style="background-color: #373737; color: #f9f9f9;">
+        © 2023 Copyright: Designed by TLACHICUATES
+    </div>
+    <!-- Copyright -->
+</footer>
+
+
+<div id="openModal4" class="modalDialog4">
+    <div>
+        <div>
+            <a href="#close4" title="Close4" class="close4">X</a>
+            <div id="divTablaInsumos" class="col-12">
+                <div class="card shadow" style="background-color: #E3C4A8 !important">
+                    <div class="card-header shadow" style="background-color: #55a277 !important;">
+                        <div class="row">
+                            <div class="col-12 ">
+                                <span class="h5"
+                                    style="color: #f9f9f9; font-family: fuenteMaya;  font-weight: bold; ">Agregar
+                                    Insumos</span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="card-body">
+
+                        <div class="form-group row">
+                            <select id="txtInsumo" name="txtInsumo" style="visibility:hidden;">
+                                {%if insumos%}
+
+                                {%for insumo in insumos %}
+                                <option value="{{insumo[0]}}" id="{{insumo[2]}}" name="{{insumo[3]}}">{{insumo[1]}}
+                                </option>
+                                {%endfor%}
+                                {%endif%}
+                            </select>
+                            {%if not insumos_lote%}
+                            <div class="col-4">
+                                <label for="txtInsumo1" class="labelForm">Insumo:</label>
+                                <div class="box" style="width: 100%; cursor: pointer;">
+                                    <select id="txtInsumo1" name="txtInsumo1"
+                                        onchange="setParametros('txtInsumo1','txtCosto1','txtUnidad1')">
+
+                                    </select>
+                                </div>
+                            </div>
+                            <script>
+                                /* CHALE */
+                                $('#txtInsumo1').html($('#txtInsumo').html());
+                            </script>
+                            <div class="col-2">
+                                <label for="txtCosto1" class="labelForm">Costo:</label>
+                                <input id="txtCosto1" type="text" class="form-control rounded-left inputForm"
+                                    placeholder="Costo" required name="txtCosto1" readonly>
+                            </div>
+                            <div class="col-4">
+                                <label for="txtUnidad1" class="labelForm">Unidad:</label>
+                                <input id="txtUnidad1" type="text" class="form-control rounded-left inputForm"
+                                    placeholder="Unidad" required name="txtUnidad1" readonly>
+                            </div>
+                            <div class="col-2">
+                                <label for="txtCantidad1" class="labelForm">Cantidad:</label>
+                                <input id="txtCantidad1" type="number" class="form-control rounded-left inputForm"
+                                    placeholder="Cantidad" required name="txtCantidad1">
+                            </div>
+                            {%endif%}
+                        </div>
+                        <div id="contenedorInsumos">
+                            {%if insumos_lote%}
+                            {% for receta in range(insumos_lote|length) %}
+                            <div class="row form-group" id="contenedorInsumo{{receta+1}}">
+                                <div class="col-4">
+                                    <label for="txtInsumo{{receta+1}}" class="labelForm">Insumo:</label>
+                                    <div class="box" style="width: 100%; cursor: pointer;">
+                                        <select id="txtInsumo{{receta+1}}" name="txtInsumo{{receta+1}}"
+                                            onchange="setParametros('txtInsumo{{receta+1}}','txtCosto{{receta+1}}','txtUnidad{{receta+1}}')">
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <script>
+                                    /* CHALE */
+                                    $('#txtInsumo{{receta+1}}').html($('#txtInsumo').html());
+                                    // Obtener el elemento select
+                                    var selectElement = document.getElementById('txtInsumo{{receta+1}}');
+
+                                    // Valor a buscar
+                                    var valorBuscado = '{{insumos_lote[receta][0]}}';
+
+                                    // Recorrer las opciones del select
+                                    for (var i = 0; i < selectElement.options.length; i++) {
+                                        var opcion = selectElement.options[i];
+
+                                        // Verificar si el valor de la opción coincide con el valor buscado
+                                        if (opcion.value === valorBuscado) {
+                                            // Establecer el atributo "selected" en la opción
+                                            opcion.selected = true;
+                                            break;  // Salir del bucle una vez que se encuentre la coincidencia
+                                        }
+                                    }
+                                </script>
+                                <div class="col-2">
+                                    <label for="txtCosto{{receta+1}}" class="labelForm">Costo:</label>
+                                    <input id="txtCosto{{receta+1}}" type="text"
+                                        class="form-control rounded-left inputForm" placeholder="Costo" required
+                                        value="{{insumos_lote[receta][1]}}" name="txtCosto{{receta+1}}" readonly>
+                                </div>
+                                <div class="col-4">
+                                    <label for="txtUnidad{{receta+1}}" class="labelForm">Unidad:</label>
+                                    <input id="txtUnidad{{receta+1}}" type="text"
+                                        class="form-control rounded-left inputForm" placeholder="Unidad" required
+                                        value="{{insumos_lote[receta][2]}}" name="txtUnidad{{receta+1}}" readonly>
+                                </div>
+                                <div class="col-2">
+                                    <label for="txtCantidad{{receta+1}}" class="labelForm">Cantidad:</label>
+                                    <input id="txtCantidad{{receta+1}}" type="number"
+                                        class="form-control rounded-left inputForm" placeholder="Cantidad" required
+                                        value="{{insumos_lote[receta][3]}}" name="txtCantidad{{receta+1}}">
+                                </div>
+
+                            </div>
+                            {% endfor %}
+                            <script>
+                                cambiarLongitud("{{longitud}}");
+                            </script>
+                            {%endif%}
+                        </div>
+
+                        <div class="form-group row pt-2 my-3">
+                            <div class="col-12">
+                                <button class="btn btn-primary buttonSave" type="button" onclick="crearElementos();"><i
+                                        class="fas fa-save " style="color: #f9f9f9"
+                                        type="button"></i>&nbsp;&nbsp;Agregar</button>
+                                <button class="btn btn-danger mx-3 buttonDelete" type="button"
+                                    onclick="eliminarElementos();"><i class="fas fa-trash "
+                                        style="color: #f9f9f9"></i>&nbsp;&nbsp;Eliminar</button>
+
+                            </div>
+                        </div>
+                        <div class="form-group shadow my-3">
+                            <button type="button" id="btn-registrar"
+                                class="form-control btn rounded submit px-3 text-white"
+                                style="background-color: #55a277; color: #f9f9f9;   font-family: 'Be Vietnam';    "
+                                onclick="agregarInputInsumos();">Registrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="openModal5" class="modalDialog5">
+    <div>
+        <div>
+            <a href="#close5" title="Close5" class="close5">X</a>
+            <div id="divTablaProductos" class="col-12">
+                <div class="card shadow" style="background-color: #E3C4A8 !important">
+                    <div class="card-header shadow" style="background-color: #55a277 !important;">
+                        <div class="row">
+                            <div class="col-12 ">
+                                <span class="h5"
+                                    style="color: #f9f9f9; font-family: fuenteMaya;  font-weight: bold; ">Agregar
+                                    Productos</span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="card-body">
+
+                        <div class="form-group row">
+                            <select id="txtProducto" name="txtProducto" style="visibility:hidden;">
+                                {%if productos%}
+
+                                {%for producto in productos %}
+                                <option value="{{producto[0]}}" id="lt" name="{{producto[2]}}">
+                                    {{producto[1]}}
+                                </option>
+                                {%endfor%}
+                                {%endif%}
+                            </select>
+                            {%if not insumos_lote%}
+                            <div class="col-4">
+                                <label for="txtProducto1" class="labelForm">Producto:</label>
+                                <div class="box" style="width: 100%; cursor: pointer;">
+                                    <select id="txtProducto1" name="txtProducto1"
+                                        onchange="setParametros('txtProducto1','txtCostoP1','txtUnidadP1')">
+
+                                    </select>
+                                </div>
+                            </div>
+                            <script>
+                                /* CHALE */
+                                $('#txtProducto1').html($('#txtProducto').html());
+                            </script>
+                            <div class="col-2">
+                                <label for="txtCostoP1" class="labelForm">Costo:</label>
+                                <input id="txtCostoP1" type="text" class="form-control rounded-left inputForm"
+                                    placeholder="Costo" required name="txtCosto1" readonly>
+                            </div>
+                            <div class="col-4">
+                                <label for="txtUnidadP1" class="labelForm">Unidad:</label>
+                                <input id="txtUnidadP1" type="text" class="form-control rounded-left inputForm"
+                                    placeholder="Unidad" required value="lt" name="txtUnidad1" readonly>
+                            </div>
+                            <div class="col-2">
+                                <label for="txtCantidadP1" class="labelForm">Cantidad:</label>
+                                <input id="txtCantidadP1" type="number" class="form-control rounded-left inputForm"
+                                    placeholder="Cantidad" required name="txtCantidad1">
+                            </div>
+                            {%endif%}
+                        </div>
+                        <div id="contenedorProductos">
+                            {%if insumos_lote%}
+                            {% for receta in range(insumos_lote|length) %}
+                            <div class="row form-group" id="contenedorProducto{{receta+1}}">
+                                <div class="col-4">
+                                    <label for="txtProducto{{receta+1}}" class="labelForm">Producto:</label>
+                                    <div class="box" style="width: 100%; cursor: pointer;">
+                                        <select id="txtProducto{{receta+1}}" name="txtProducto{{receta+1}}"
+                                            onchange="setParametros('txtProducto{{receta+1}}','txtCostoP{{receta+1}}','txtUnidadP{{receta+1}}')">
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <script>
+                                    /* CHALE */
+                                    $('#txtProducto{{receta+1}}').html($('#txtProducto').html());
+                                    // Obtener el elemento select
+                                    var selectElement = document.getElementById('txtProducto{{receta+1}}');
+
+                                    // Valor a buscar
+                                    var valorBuscado = '{{insumos_lote[receta][0]}}';
+
+                                    // Recorrer las opciones del select
+                                    for (var i = 0; i < selectElement.options.length; i++) {
+                                        var opcion = selectElement.options[i];
+
+                                        // Verificar si el valor de la opción coincide con el valor buscado
+                                        if (opcion.value === valorBuscado) {
+                                            // Establecer el atributo "selected" en la opción
+                                            opcion.selected = true;
+                                            break;  // Salir del bucle una vez que se encuentre la coincidencia
+                                        }
+                                    }
+                                </script>
+                                <div class="col-2">
+                                    <label for="txtCostoP{{receta+1}}" class="labelForm">Costo:</label>
+                                    <input id="txtCostoP{{receta+1}}" type="text"
+                                        class="form-control rounded-left inputForm" placeholder="Costo" required
+                                        value="{{insumos_lote[receta][1]}}" name="txtCostoP{{receta+1}}" readonly>
+                                </div>
+                                <div class="col-4">
+                                    <label for="txtUnidadP{{receta+1}}" class="labelForm">Unidad:</label>
+                                    <input id="txtUnidadP{{receta+1}}" type="text"
+                                        class="form-control rounded-left inputForm" placeholder="Unidad" required
+                                        value="{{insumos_lote[receta][2]}}" name="txtUnidadP{{receta+1}}" readonly>
+                                </div>
+                                <div class="col-2">
+                                    <label for="txtCantidadP{{receta+1}}" class="labelForm">Cantidad:</label>
+                                    <input id="txtCantidadP{{receta+1}}" type="number"
+                                        class="form-control rounded-left inputForm" placeholder="Cantidad" required
+                                        value="{{insumos_lote[receta][3]}}" name="txtCantidadP{{receta+1}}">
+                                </div>
+
+                            </div>
+                            {% endfor %}
+                            <script>
+                                cambiarLongitudProductos("{{longitud}}");
+                            </script>
+                            {%endif%}
+                        </div>
+
+                        <div class="form-group row pt-2 my-3">
+                            <div class="col-12">
+                                <button class="btn btn-primary buttonSave" type="button"
+                                    onclick="crearElementosProductos();"><i class="fas fa-save " style="color: #f9f9f9"
+                                        type="button"></i>&nbsp;&nbsp;Agregar</button>
+                                <button class="btn btn-danger mx-3 buttonDelete" type="button"
+                                    onclick="eliminarElementosProductos();"><i class="fas fa-trash "
+                                        style="color: #f9f9f9"></i>&nbsp;&nbsp;Eliminar</button>
+
+                            </div>
+                        </div>
+                        <div class="form-group shadow my-3">
+                            <button type="button" id="btn-registrar"
+                                class="form-control btn rounded submit px-3 text-white"
+                                style="background-color: #55a277; color: #f9f9f9;   font-family: 'Be Vietnam';    "
+                                onclick="agregarInputProductos();">Registrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{%if Inventario%}
+<script>
+    $("#txtProveedor option[value='{{Inventario[2]}}']").prop("selected", true);
+    $("#txtUnidad option[value='{{Inventario[3]}}']").prop("selected", true);
+</script>
+{%endif%}
+
+{%if lote%}
+<script>
+    if ("{{lote[4]}}" === "Insumo") {
+        $("input[name=tipoInventario2][value=2]").prop("checked", true);
+        console.log("sadasdsd");
+    } else {
+        $("input[name=tipoInventario2][value=1]").prop("checked", true);
+    }
+
+
+</script>
+{%endif%}
+
+<script type="text/javascript">
+    inicializarModuloInventarios();
+    optionProductoInsumo();
+</script>
+<script>
+    //puedes deshabilitar el paginador
+    $(document).ready(function () {
+        $('#inventarioRealContenedor').hide();
+        $('#tablaInventarios').DataTable({
+            "columnDefs": [
+                { "orderable": false, "targets": 4 }
+            ]
+        });
+        $('#tablaInventariosReal').DataTable({
+           
+        });
+
+        
+
+        $('input:radio[name="tipoInventario2"]').change(function () {
+            optionProductoInsumo();
+        });
+
+        $('#exampleFormControlSelect1').change(function () {
+            if(parseInt($('#exampleFormControlSelect1').val())===1){
+                $('#inventarioLoteContenedor').show();
+                $('#inventarioRealContenedor').hide();
+            }else{
+                $('#inventarioRealContenedor').show();
+                $('#inventarioLoteContenedor').hide();
+                
+            }
+        });
+    });
+
+</script>
+
+
+{% endblock %}

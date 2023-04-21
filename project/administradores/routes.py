@@ -5,6 +5,8 @@ from .mainUsuarios import modificarInsertarUsuario, consultarUsuarios, consultar
 from .mainProveedores import consultarProveedores, modificarInsertarProveedor, consultarProveedor, eliminarProveedor
 from .mainInsumos import consultarInsumos, modificarInsertarInsumo, consultarInsumo, eliminarInsumo
 from .mainProductos import consultarProductos, modificarInsertarProducto, consultarReceta, eliminarProducto
+from .mainInventarios import consultarInventarios, modificarInsertarLote, consultarInventario, eliminarLote, aprobarLoteInsumo, comprobarInventario
+from .mainVentas import InsertarVenta, consultarVentas,consultarVenta, eliminarVenta
 from flask import Blueprint, render_template
 from flask_security.decorators import login_required
 from flask_security import login_required, current_user
@@ -134,5 +136,88 @@ def vistaReceta():
     insumos=consultarInsumos()
     producto, recetas=consultarReceta(request.form.get('bandera'))
     longitud = len(recetas)
-    return render_template('/administradores/recetas.html', productos=resultset, insumos=insumos, producto=producto, recetas=recetas,longitud=longitud)
+    cadenaReceta=""
+    for receta in recetas:
+        cadenaReceta=cadenaReceta+"¬"+str(receta[0])+"°"+str(receta[3])
+    return render_template('/administradores/recetas.html', productos=resultset, insumos=insumos, cadenaReceta=cadenaReceta,producto=producto, recetas=recetas,longitud=longitud)
 #Fin recetas
+
+
+#Inicio inventario
+@administradores.route("/tlachicuates/inventarios")
+@login_required
+@roles_required('administrador')
+def vistaInventarios():
+    resultset=consultarInventarios()
+    insumos=consultarInsumos()
+    productos=consultarProductos()
+    inventarioProductos, inventarioInsumos=comprobarInventario()
+    return render_template('/administradores/inventario.html', Inventarios=resultset, inventarioInsumos=inventarioInsumos,inventarioProductos=inventarioProductos,productos=productos,insumos=insumos,banderaLoading=True)
+
+@administradores.route("/tlachicuates/inventarios", methods=["POST"])
+@login_required
+@roles_required('administrador')
+def CUDvistaInventarios():
+        idUsuario = session.get("idUsuario")
+        if int(request.form.get('bandera1'))==1:
+              x = request.form.get('banderaInsumos').split("¬");
+              x.pop(0)
+              modificarInsertarLote(idUsuario,request.form.get('txtCodigoI'),request.form.get('txtNoLote'), request.form.get('txtCosto'),request.form.get('txtObservaciones'), x, request.form.get('tipoInventario'))
+        elif int(request.form.get('bandera1'))==2:
+                eliminarLote(idUsuario,request.form.get('txtCodigoI'))
+        elif int(request.form.get('bandera1'))==3:
+              x = request.form.get('banderaInsumos').split("¬");
+              x.pop(0)
+              aprobarLoteInsumo(idUsuario,request.form.get('txtCodigoI'), x, request.form.get('txtCaducidad'), request.form.get('tipoInventario'))
+
+        return redirect(url_for('main.administradores_auth.vistaInventarios')) 
+
+
+@administradores.route("/tlachicuates/inventario", methods=["POST", "GET"])
+@login_required
+@roles_required('administrador')
+def vistaInventario():
+    resultset=consultarInventarios()
+    insumos=consultarInsumos()
+    productos=consultarProductos()
+    lote, insumos_lote=consultarInventario(request.form.get('bandera'),request.form.get('bandera2'))
+    longitud = len(insumos_lote)
+    cadenaInsumos=""
+    for receta in insumos_lote:
+        cadenaInsumos=cadenaInsumos+"¬"+str(receta[0])+"°"+str(receta[3])
+    return render_template('/administradores/inventario.html', Inventarios=resultset, productos=productos, insumos=insumos, cadenaInsumos=cadenaInsumos,lote=lote, insumos_lote=insumos_lote,longitud=longitud)
+#Fin inventario
+
+#Inicio Ventas
+@administradores.route("/tlachicuates/ventas")
+@login_required
+@roles_required('administrador')
+def vistaVentas():
+    resultset=consultarVentas()
+    productos=consultarProductos()
+    return render_template('/administradores/ventas.html', ventas=resultset, productos=productos,banderaLoading=True)
+
+@administradores.route("/tlachicuates/ventas", methods=["POST"])
+@login_required
+@roles_required('administrador')
+def CUDvistaVentas():
+        idUsuario = session.get("idUsuario")
+        if int(request.form.get('bandera1'))==1:
+              x = request.form.get('banderaInsumos').split("¬");
+              x.pop(0)
+              InsertarVenta(idUsuario,x, request.form.get('txtTotal'))
+        elif int(request.form.get('bandera1'))==2:
+                eliminarVenta(idUsuario,request.form.get('txtCodigoV'))
+
+        return redirect(url_for('main.administradores_auth.vistaVentas')) 
+
+
+@administradores.route("/tlachicuates/venta", methods=["POST", "GET"])
+@login_required
+@roles_required('administrador')
+def vistaVenta():
+    resultset=consultarVentas()
+    productos=consultarProductos()
+    venta, productos_venta=consultarVenta(request.form.get('bandera'))
+    return render_template('/administradores/ventas.html', ventas=resultset,productos=productos,banderaLoading=True,venta=venta,productos_venta=productos_venta)
+#Fin Ventas
