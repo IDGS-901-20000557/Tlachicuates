@@ -11,6 +11,7 @@ from .mainMisPedidos import *
 from .mainReservaciones import *
 from flask_login import current_user
 from datetime import datetime
+from flask import jsonify
 import random
 
 clientes = Blueprint('clientes_auth', __name__)
@@ -24,16 +25,45 @@ def vistaContacto():
 #fin contacto
 
 
-#Inicio contacto
-@clientes.route("/tlachicuates/mispedidos")
+#Inicio MisPedidos
+@clientes.route("/tlachicuates/mispedidos", methods=['GET', 'POST'])
 @login_required
 @roles_required('cliente')
 def vistaMisPedidos():
     idcliente = current_user.id
+    productos = consultarProductos()
     pedidos = consultarPedidos(idcliente)
-    return render_template('/usuarios/mispedidos.html', banderaLoading=True, pedidos=pedidos)
-#fin contacto
+    
+    productos_obtenidos = None
 
+    if request.method == 'POST':
+        idPedido = request.json['idPedido']
+        productos_obtenidos = obtenerProductosPorPedido(idPedido)
+        redirect
+        print(productos_obtenidos) 
+    else:
+        productos_obtenidos = obtenerProductosPorPedido(16)
+
+   
+    return render_template('/usuarios/mispedidos.html', banderaLoading=True, pedidos=pedidos, productos=productos, productos_obtenidos=productos_obtenidos)
+
+
+
+@clientes.route("/tlachicuates/mis", methods=['POST'])
+@login_required
+@roles_required('cliente')
+def obtenerProductos():
+    try:
+        idPedido = request.json['idPedido']
+        productos = obtenerProductosPorPedido(idPedido)
+        print(productos)
+        return jsonify(productos)
+    except Exception as e:
+        return jsonify({"error": str(e)})
+
+
+
+#Fin MisPedidos
 
 #Inicio compras
 

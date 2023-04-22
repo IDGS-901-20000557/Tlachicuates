@@ -30,7 +30,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
 
     <!-- JS Animations -->
-    <script src="../../static/js/compras.js" async></script>
+    <script src="{{ url_for('static', filename='js/compras.js') }}" async></script>
+<script src="{{ url_for('static', filename='js/mispedidos.js') }}" async></script>
     <script src="../../static/js/wow.min.js" type="text/javascript"></script>
     <script>
         new WOW().init();

@@ -21,10 +21,17 @@
           <div class="item">
               <span class="id-item" style="display: none">{{ pedido['idPedido'] }}</span>
               <span class="titulo-item">Pedido {{ loop.index }}</span>
+              {% if productos_obtenidos %}
+              <span class="titulo-item">{{ productos_obtenidos[0]['nombreProducto'] }}</span>
+             {% endif %}
               <img src="../../static/img/logoCircular.png" alt="" class="img-item">
-              <button class="boton-item">Ver pedido</button>
+              <button class="boton-item" onclick="agregarAlCarrito({{ pedido['idPedido'] }})" name="VerPedido">Ver pedido</button>
           </div>
           {% endfor %}
+
+          
+          <button class="boton-item" onclick="p('{{ productos_obtenidos[0]['nombreProducto']|escape }}')" name="VerPedido">Presioname</button>
+
 
 
           
@@ -78,7 +85,7 @@
             </div>
             
 
-              <button type="submit" class="btn-pagar">Pagar <i class="fa-solid fa-bag-shopping"></i></button>
+              <button type="submit" class="btn-pagar" name="Modificar">Modificar<i class="fa-solid fa-bag-shopping"></i></button>
             
             
         </div>
