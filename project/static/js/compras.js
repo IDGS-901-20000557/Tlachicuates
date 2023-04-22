@@ -44,7 +44,7 @@ function ready(){
 //Eliminamos todos los elementos del carrito y lo ocultamos
 function pagarClicked(){
   
-  alert("Gracias por la compra");
+  alert("Gracias ");
   var carritoItems = document.getElementsByClassName("carrito-item");
   var items = [];
   for (var i = 0; i < carritoItems.length; i++) {
@@ -67,6 +67,7 @@ function pagarClicked(){
   var data = {
     items: items
   };
+
 
     // Convertir el objeto de datos en JSON
     var jsonData = JSON.stringify(data);
@@ -93,9 +94,55 @@ function pagarClicked(){
         carritoItems.removeChild(carritoItems.firstChild);
       }
   
+
     actualizarTotalCarrito();
+
     ocultarCarrito();
+    generarTicket(data)
+      // Generar ticket
+  var ticket = "ID\t\tTítulo\t\tPrecio\t\tTamaño\t\tCantidad\n";
+  for (var i = 0; i < items.length; i++) {
+    var item = items[i];
+    ticket += item.id + "\t" + item.titulo + "\t" + item.precio + "\t" + item.tamano + "\t" + item.cantidad + "\n";
+  }
+  var blob = new Blob([ticket], { type: "text/plain;charset=utf-8" });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement("a");
+  a.href = url;
+  a.download = "ticket.txt";
+  a.target = "_blank";
+  document.body.appendChild(a);
+  a.click();
 }
+
+function generarTicket(data) {
+    // Crea un nuevo objeto de fecha para obtener la hora actual
+    var fecha = new Date();
+  
+    // Construye el contenido del ticket utilizando los detalles de la compra
+    var contenidoTicket = "Detalles de la compra:\n\n";
+    contenidoTicket += "Fecha de la compra: " + fecha.toLocaleDateString() + " " + fecha.toLocaleTimeString() + "\n\n";
+    contenidoTicket += "Productos:\n";
+    contenidoTicket += "--------------------------------------------------\n";
+  
+    for (var i = 0; i < data.items.length; i++) {
+      var item = data.items[i];
+      contenidoTicket += item.titulo + "\n";
+      contenidoTicket += "Tamaño: " + item.tamano + "\n";
+      contenidoTicket += "Cantidad: " + item.cantidad + "\n";
+      contenidoTicket += "Precio unitario: " + item.precio + "\n";
+      contenidoTicket += "Subtotal: " + (item.cantidad * item.precio) + "\n";
+      contenidoTicket += "--------------------------------------------------\n";
+    }
+  
+    // Agrega el total de la compra al contenido del ticket
+    contenidoTicket += "Total: " + "Total" + "\n";
+  
+    // Crea un objeto de ventana nueva con el contenido del ticket
+    var ticketVentana = window.open("", "_blank");
+    ticketVentana.document.write("<pre>" + contenidoTicket + "</pre>");
+  }
+  
 //Funciòn que controla el boton clickeado de agregar al carrito
 function agregarAlCarritoClicked(event){
    

@@ -38,6 +38,7 @@ def vistaMisPedidos():
     if request.method == 'POST':
         idPedido = request.json['idPedido']
         productos_obtenidos = obtenerProductosPorPedido(idPedido)
+        redirect
         print(productos_obtenidos) 
     else:
         productos_obtenidos = obtenerProductosPorPedido(16)
