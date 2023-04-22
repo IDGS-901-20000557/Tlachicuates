@@ -63,4 +63,32 @@ def insert_pedido_producto(cantidad, unidad, id_producto, id_pedido):
         success = 'Error al agregar el producto al pedido:', ex
     return success
 
+def delete_pedido(id_pedido):
+    success = ''
+    try:
+        connection = get_connection()
+        with connection.cursor() as cursor:
+            cursor.execute('DELETE FROM pedidos_productos WHERE id_pedido=%s', (id_pedido,))
+            cursor.execute('DELETE FROM pedidos WHERE id=%s', (id_pedido,))
+            connection.commit()
+        connection.close()
+        print('Pedido eliminado con éxito')
+        success = 'Pedido eliminado con éxito'
+    except Exception as ex:
+        print('Error al eliminar el pedido:', ex)
+        success = 'Error al eliminar el pedido:', ex
+    return success
 
+def update_pedido(id_pedido, id_cliente, fecha_pedido, fecha_entrega, codigo, estatus):
+    success = ''
+    try:
+        connection = get_connection()
+        with connection.cursor() as cursor:
+            cursor.execute("UPDATE pedidos SET id_cliente=%s, fecha_pedido=%s, fecha_entrega=%s, codigo=%s, estatus=%s WHERE id_pedido=%s", (id_cliente, fecha_pedido, fecha_entrega, codigo, estatus, id_pedido))
+            connection.commit()
+            success = 'Pedido actualizado correctamente'
+        connection.close()
+    except Exception as ex:
+        print('Error actualizando el pedido:', ex)
+        success = 'Error actualizando el pedido:', ex
+    return success
